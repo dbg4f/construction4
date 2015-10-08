@@ -62,6 +62,29 @@ http://gis.stackexchange.com/questions/2951/algorithm-for-offsetting-a-latitude-
 
 If your displacements aren't too great (less than a few kilometers) and you're not right at the poles, use the quick and dirty estimate that 111,111 meters (111.111 km) in the y direction is 1 degree (of latitude) and 111,111 * cos(latitude) meters in the x direction is 1 degree (of longitude).
 
+1 deg lat = 111111m
+1 deg lon = 111111 * cos(59deg) [59d = 1.03, cos(1.03) = 0.514819] = 57202
+
+1 deg = 60min
+1 min = 60 sek
+1 deg = 3600 sek
+
+1 sek lat = 111111/3600 = 30,864166667m
+1 sek lon = 57202/3600 = 15,889444444m
+
+44.43 28.41
+42.34 29.75
+
+2.09 1.34
+
+
+        x = 2.09 x 30.864166667;
+
+        y = 1.34 x 15.889444444;
+
+        Math.sqrt(x2 + y2) = 67.92
+
+
 
 
 

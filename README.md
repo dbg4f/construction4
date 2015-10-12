@@ -87,6 +87,11 @@ If your displacements aren't too great (less than a few kilometers) and you're n
 
 
 
+Viimane nurk: 67.66 m
+Viimane nurk: 161.16 °
+
+Viimane nurk: 72.5 °
+Viimane lõik: 26.86 m
 
 
 

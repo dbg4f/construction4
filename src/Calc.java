@@ -85,13 +85,10 @@ public class Calc {
 
     private static CartesianPoint pointTransform(GeoPoint start, GeoPoint point) {
         return point.toCartesianPoint(start)
-                .scale(8)
-                .shift(-200, 800)
-                .rotate(Angle.degrees(-71.5))
-                .shift(-300, -300)
-                .rotate(Angle.degrees(90))
-                .shift(700, -300)
-                .scale(1.5)
+                .scale(10)
+                .rotate(Angle.degrees(-71.5 + 90))
+                .scale(-1)
+                .shift(100, 400)
                 ;
     }
 

@@ -13,15 +13,33 @@ public class CartesianPoint {
     }
 
     public CartesianPoint shift(double delta) {
-        return new CartesianPoint(x + delta, y + delta);
+        return shift(delta, delta);
+    }
+
+    public CartesianPoint shift(double deltaX, double deltaY) {
+        return new CartesianPoint(x + deltaX, y + deltaY);
+    }
+
+    public CartesianPoint scaleX(double factorX) {
+        return new CartesianPoint(x * factorX, y);
+    }
+
+    public CartesianPoint scaleY(double factorY) {
+        return new CartesianPoint(x, y * factorY);
     }
 
     public CartesianPoint scale(double factor) {
         return new CartesianPoint(x * factor, y * factor);
     }
 
+    public CartesianPoint rotate(Angle angle) {
+        double xx = x*Math.cos(angle.radians()) - y*Math.sin(angle.radians());
+        double yy = x*Math.sin(angle.radians()) + y*Math.cos(angle.radians());
+        return new CartesianPoint(xx, yy);
+    }
+
     public String toDrawCommand() {
-        return String.format("ctx.lineTo(%d,%d);ctx.storoke();\n", (int)x, (int)y);
+        return String.format("ctx.lineTo(%d,%d);ctx.stroke();\n", (int)x, (int)y);
     }
 
     @Override

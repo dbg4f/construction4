@@ -19,7 +19,7 @@ public class GeoPoint {
     }
 
     public static double lonMeters(double lon1, double lon2, double pointLat) {
-        double a = toRad(pointLat);
+        double a = Angle.toRad(pointLat);
         return (lon2 - lon1) * LAT_METERS_DEGREE * Math.cos(a);
     }
 
@@ -39,11 +39,6 @@ public class GeoPoint {
         return Math.sqrt(dLatM * dLatM + dLonM * dLonM);
 
     }
-
-    public static double toRad(double degrees) {
-        return Math.PI * degrees / 180.0;
-    }
-
 
 
 }

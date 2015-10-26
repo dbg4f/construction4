@@ -1,3 +1,5 @@
+import java.io.FileWriter;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -25,32 +27,69 @@ public class Calc {
     };
 
 
-    public static void main(String[] args) {
+    public static void main(String[] args) throws IOException {
 
         checkLength();
-
-        System.out.println("args = " + POINTS[1].metersTo(POINTS[2]));
 
         transform();
 
     }
 
 
-    public static List<CartesianPoint> transform() {
+    public static final String HTML_TEMPLATE = "<!DOCTYPE html>\n" +
+            "<html>\n" +
+            "<body>\n" +
+            "\n" +
+            "<canvas id=\"myCanvas\" width=\"1000\" height=\"1000\" style=\"border:1px solid #d3d3d3;\">\n" +
+            "    Your browser does not support the HTML5 canvas tag.</canvas>\n" +
+            "\n" +
+            "<script>\n" +
+            "    var c = document.getElementById(\"myCanvas\");\n" +
+            "    var ctx = c.getContext(\"2d\");\n" +
+            "\n" +
+            "%s" +
+            "</script>\n" +
+            "\n" +
+            "</body>\n" +
+            "</html>\n";
+
+    public static List<CartesianPoint> transform() throws IOException {
 
 
-        GeoPoint start = POINTS[8];
+        StringBuffer buf = new StringBuffer();
+
+        GeoPoint start = POINTS[5];
 
         List<CartesianPoint> cartesianPoints = new ArrayList<>();
 
         for (GeoPoint point : POINTS) {
-            CartesianPoint point1 = point.toCartesianPoint(start).scale(10).shift(800);
+            CartesianPoint point1 = pointTransform(start, point);
             cartesianPoints.add(point1);
-            System.out.println(point1.toDrawCommand());
+            buf.append(point1.toDrawCommand());
         }
+
+        buf.append(pointTransform(start, POINTS[0]).toDrawCommand());
+
+        saveToFile(buf);
+
 
 
         return cartesianPoints;
+    }
+
+    private static void saveToFile(StringBuffer buf) throws IOException {
+        FileWriter writer = new FileWriter("draw.html");
+        writer.write(String.format(HTML_TEMPLATE, buf.toString()));
+        writer.close();
+    }
+
+    private static CartesianPoint pointTransform(GeoPoint start, GeoPoint point) {
+        return point.toCartesianPoint(start)
+                .scale(10)
+                .rotate(Angle.degrees(-71.5 + 90))
+                .scale(-1)
+                .shift(100, 400)
+                ;
     }
 
 

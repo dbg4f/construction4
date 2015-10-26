@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+<body>
+
+<canvas id="myCanvas" width="1000" height="1000" style="border:1px solid #d3d3d3;">
+    Your browser does not support the HTML5 canvas tag.</canvas>
+
+<script>
+
+    var c = document.getElementById("myCanvas");
+    var ctx = c.getContext("2d");
+
+
+    function drawRoom(posX, posY, dimX, dimY, text) {
+
+        ctx.fillStyle = "#FF0000";
+        ctx.fillRect(posX, posY, dimX, dimY);
+
+        ctx.fillStyle = "#00FF00";
+        ctx.font = "20px Arial";
+        ctx.fillText(text + " " + (dimX/100) * (dimY/100) ,posX + dimX / 2, posY + dimY / 2);
+
+
+    }
+
+
+    drawRoom(0, 0, 400, 500, "main");
+
+
+
+
+</script>
+
+</body>
+</html>

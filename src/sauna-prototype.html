@@ -16,7 +16,7 @@
 	
 	var centerPointMeters = {x: 0, y:0};
 	
-	var meterScale = 150;// 100px per meter
+	var meterScale = 150;// px per meter
 	
 	function transform(point) {
 		return {x: point.x + centerPoint.x, y: centerPoint.y - point.y };
@@ -63,11 +63,17 @@
 		var endPointText = pointMoveXY(endPointMarker, -markerLenPx, -markerLenPx);
 		drawText(endPointText, text);		
 	}
+	
+	function drawSectionMeters(point1, point2) {
+		drawSection(transformFromMeters(point1), transformFromMeters(point2));
+	}
 
+	function drawTextMeters(point, text) {
+		drawText(transformFromMeters(point), text);
+	}
 	
 	function drawAxes(metersX, metersY) {
-		
-		
+				
 		for (i=0; i<metersX; i++) {
 			drawMeterX({x:i, y:0}, 10, ""+(i+1))
 		}
@@ -75,15 +81,31 @@
 		for (i=0; i<metersY; i++) {
 			drawMeterY({x:0, y:i}, 10, ""+(i+1))
 		}
-
-		
-		//drawSection(centerPoint, pointMoveXY(centerPoint, 100, 0));
-		//drawSection(centerPoint, pointMoveXY(centerPoint, 0, -100));
-		
-		drawMeterX(centerPointMeters, 10, "1");
-		
 		
 	}
+
+
+	function drawRectMeters(dimensions, point) {		
+		drawSectionMeters(point, pointMoveXY(point, dimensions.x, 0));
+		drawSectionMeters(pointMoveXY(point, dimensions.x, 0), pointMoveXY(point, dimensions.x, dimensions.y));
+		drawSectionMeters(pointMoveXY(point, dimensions.x, dimensions.y), pointMoveXY(point, 0, dimensions.y));
+		drawSectionMeters(pointMoveXY(point, 0, dimensions.y), point);		
+	}
+	
+	
+	function center(dimensions, point) {
+		return {x:point.x + dimensions.x / 2, y:point.y + dimensions.y / 2};
+	}
+	
+	function drawRoom(dimensions, point, text) {
+		drawRectMeters(dimensions, point);
+		if (text != null) {
+			drawTextMeters(center(dimensions, point), text + " " + (dimensions.x * dimensions.y));
+		}
+		
+	}
+	
+		
 
 
     /*
@@ -104,6 +126,13 @@
 	*/
 
 	drawAxes(8, 5);
+	
+	drawRoom({x:5,y:4}, {x:0,y:0});
+	
+	drawRoom({x:2,y:1.5}, {x:0,y:2.5}, "leiliruum");
+	drawRoom({x:2,y:1}, {x:0,y:1.5}, "bath");
+	drawRoom({x:1,y:1.5}, {x:0,y:0}, "WC");
+	drawRoom({x:1,y:1.5}, {x:1,y:0}, "tambur");
 
 
 

@@ -2,7 +2,7 @@
 <html>
 <body>
 
-<canvas id="myCanvas" width="1000" height="1000" style="border:1px solid #d3d3d3;">
+<canvas id="myCanvas" width="1200" height="1000" style="border:1px solid #d3d3d3;">
     Your browser does not support the HTML5 canvas tag.</canvas>
 
 <script>
@@ -10,14 +10,90 @@
     var c = document.getElementById("myCanvas");
     var ctx = c.getContext("2d");
 
+	var drawingArea = {width:1000, height:1000};
+	
+	var centerPoint = {x: 100, y:700};
+	
+	var centerPointMeters = {x: 0, y:0};
+	
+	var meterScale = 150;// 100px per meter
+	
+	function transform(point) {
+		return {x: point.x + centerPoint.x, y: centerPoint.y - point.y };
+	}
 
+	function transformFromMeters(pointMeters) {
+		
+		var point = {x:pointMeters.x * meterScale, y:pointMeters.y * meterScale}
+		
+		return {x: point.x + centerPoint.x, y: centerPoint.y - point.y };
+	}
+
+	
+	function drawSection(point1, point2) {
+		ctx.moveTo(point1.x, point1.y);
+		ctx.lineTo(point2.x, point2.y);
+		ctx.stroke();
+	}
+
+	function pointMoveXY(point, distanceX, distanceY) {
+		return {x: point.x + distanceX, y: point.y + distanceY}
+	}
+
+	function drawText(point, text) {
+		ctx.fillText(text ,point.x, point.y);
+	}
+	
+	function drawMeterX(pointMeters1, markerLenPx, text) {
+		var startingPoint = transformFromMeters(pointMeters1);
+		var endPoint = pointMoveXY(startingPoint, meterScale, 0);
+		drawSection(startingPoint, endPoint);
+		var endPointMarker = pointMoveXY(endPoint, 0,markerLenPx);
+		drawSection(endPoint, endPointMarker);
+		var endPointText = pointMoveXY(endPointMarker, markerLenPx,markerLenPx);
+		drawText(endPointText, text);		
+	}
+
+	function drawMeterY(pointMeters1, markerLenPx, text) {
+		var startingPoint = transformFromMeters(pointMeters1);
+		var endPoint = pointMoveXY(startingPoint, 0, -meterScale);
+		drawSection(startingPoint, endPoint);
+		var endPointMarker = pointMoveXY(endPoint, -markerLenPx, 0);
+		drawSection(endPoint, endPointMarker);
+		var endPointText = pointMoveXY(endPointMarker, -markerLenPx, -markerLenPx);
+		drawText(endPointText, text);		
+	}
+
+	
+	function drawAxes(metersX, metersY) {
+		
+		
+		for (i=0; i<metersX; i++) {
+			drawMeterX({x:i, y:0}, 10, ""+(i+1))
+		}
+
+		for (i=0; i<metersY; i++) {
+			drawMeterY({x:0, y:i}, 10, ""+(i+1))
+		}
+
+		
+		//drawSection(centerPoint, pointMoveXY(centerPoint, 100, 0));
+		//drawSection(centerPoint, pointMoveXY(centerPoint, 0, -100));
+		
+		drawMeterX(centerPointMeters, 10, "1");
+		
+		
+	}
+
+
+    /*
     function drawRoom(posX, posY, dimX, dimY, text) {
 
         ctx.fillStyle = "#FF0000";
         ctx.fillRect(posX, posY, dimX, dimY);
 
         ctx.fillStyle = "#00FF00";
-        ctx.font = "20px Arial";
+        ctx.font = "15px Arial";
         ctx.fillText(text + " " + (dimX/100) * (dimY/100) ,posX + dimX / 2, posY + dimY / 2);
 
 
@@ -25,6 +101,10 @@
 
 
     drawRoom(0, 0, 400, 500, "main");
+	*/
+
+	drawAxes(8, 5);
+
 
 
 

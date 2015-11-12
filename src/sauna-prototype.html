@@ -12,7 +12,7 @@
 
 	var drawingArea = {width:1000, height:1000};
 	
-	var centerPoint = {x: 100, y:700};
+	var centerPoint = {x: 100, y:800};
 	
 	var centerPointMeters = {x: 0, y:0};
 	
@@ -104,41 +104,87 @@
 		}
 		
 	}
+
+	function drawBrick(dimensions, point) {
+		drawRectMeters(dimensions, point);
+	}
 	
-		
+	function drawBrickLineX(startPoint, dimensions, count) {
+		var point = startPoint;
+		for (i=0; i<count; i++) {
+			drawBrick(dimensions, point);
+			point = pointMoveXY(point, dimensions.x, 0);
+		}
+		return point.x;
+	}
+
+	function drawBrickLineY(startPoint, dimensions, count) {
+		var point = startPoint;
+		for (i=0; i<count; i++) {
+			drawBrick(dimensions, point);
+			point = pointMoveXY(point, 0, dimensions.y);
+		}
+		return point.y;
+	}
 
 
-    /*
-    function drawRoom(posX, posY, dimX, dimY, text) {
-
-        ctx.fillStyle = "#FF0000";
-        ctx.fillRect(posX, posY, dimX, dimY);
-
-        ctx.fillStyle = "#00FF00";
-        ctx.font = "15px Arial";
-        ctx.fillText(text + " " + (dimX/100) * (dimY/100) ,posX + dimX / 2, posY + dimY / 2);
-
-
-    }
-
-
-    drawRoom(0, 0, 400, 500, "main");
-	*/
 
 	drawAxes(8, 5);
 
-    var blockWidth = 0.375;
+    var blockWidth = 0.375; // 0.6 - 0.375 = 0.225
     var wallkWidth = 0.15;
 
-	drawRoom({x:5,y:4}, {x:0,y:0});
-    drawRoom({x:5 + 2 * blockWidth,y:4 + 2 * blockWidth}, {x:-blockWidth,y:-blockWidth});
-	
-	drawRoom({x:2,y:1.5 - wallkWidth},      {x:0,y:2.5 + wallkWidth}, "leiliruum");
-	drawRoom({x:2,y:1 - wallkWidth / 2},    {x:0,y:1.5 + wallkWidth / 2}, "bath");
-	drawRoom({x:1,y:1.5 - wallkWidth / 2},  {x:0,y:0}, "WC");
-	drawRoom({x:1,y:1.5 - wallkWidth / 2},  {x:1,y:0}, "tambur");
 
-    drawRoom({x:3 - wallkWidth,y:4},  {x:2 + wallkWidth,y:0}, "livingroom");
+
+	var rooms 		= false;
+	var brickWallX 	= false;
+	var brickWallY 	= false;
+	var bricks 		= true;
+
+
+	if (rooms) {
+
+		drawRoom({x:5,y:4}, {x:0,y:0});
+		drawRoom({x:5 + 2 * blockWidth,y:4 + 2 * blockWidth}, {x:-blockWidth,y:-blockWidth});
+
+		drawRoom({x:2,y:1.5 - wallkWidth},      {x:0,y:2.5 + wallkWidth}, "leiliruum");
+		drawRoom({x:2,y:1 - wallkWidth / 2},    {x:0,y:1.5 + wallkWidth / 2}, "bath");
+		drawRoom({x:1,y:1.5 - wallkWidth / 2},  {x:0,y:0}, "WC");
+		drawRoom({x:1,y:1.5 - wallkWidth / 2},  {x:1,y:0}, "tambur");
+
+		drawRoom({x:3 - wallkWidth,y:4},  {x:2 + wallkWidth,y:0}, "livingroom");
+
+	}
+
+	var brickHeight = 0.2;
+	var brickLength = 0.6;
+
+	var fullBrick = {x:brickLength, y:brickHeight};
+	var fullBrickEnd = {x:blockWidth, y:brickHeight};
+
+
+
+
+		if (bricks) {
+
+			var sizes = {x:9, y:8};
+
+			var startPoint = {x:-blockWidth, y:-blockWidth};
+
+			var sizesX = {x: brickLength, y: blockWidth};
+			var sizesY = {x: blockWidth, y: brickLength};
+
+			var endX = drawBrickLineX(startPoint, sizesX, sizes.x);
+			var endY = drawBrickLineY({x:-blockWidth, y:0}, sizesY, sizes.y);
+
+			drawBrickLineX({x:0, y:endY-blockWidth}, sizesX, sizes.x);
+			drawBrickLineY({x:endX, y:-blockWidth}, sizesY, sizes.y);
+
+
+
+
+
+		}
 
 
 

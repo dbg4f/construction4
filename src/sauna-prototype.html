@@ -139,22 +139,8 @@
 	var rooms 		= false;
 	var brickWallX 	= false;
 	var brickWallY 	= false;
-	var bricks 		= true;
-
-
-	if (rooms) {
-
-		drawRoom({x:5,y:4}, {x:0,y:0});
-		drawRoom({x:5 + 2 * blockWidth,y:4 + 2 * blockWidth}, {x:-blockWidth,y:-blockWidth});
-
-		drawRoom({x:2,y:1.5 - wallkWidth},      {x:0,y:2.5 + wallkWidth}, "leiliruum");
-		drawRoom({x:2,y:1 - wallkWidth / 2},    {x:0,y:1.5 + wallkWidth / 2}, "bath");
-		drawRoom({x:1,y:1.5 - wallkWidth / 2},  {x:0,y:0}, "WC");
-		drawRoom({x:1,y:1.5 - wallkWidth / 2},  {x:1,y:0}, "tambur");
-
-		drawRoom({x:3 - wallkWidth,y:4},  {x:2 + wallkWidth,y:0}, "livingroom");
-
-	}
+	var bricks 		= false;
+	var sideWall	= true;
 
 	var brickHeight = 0.2;
 	var brickLength = 0.6;
@@ -162,12 +148,15 @@
 	var fullBrick = {x:brickLength, y:brickHeight};
 	var fullBrickEnd = {x:blockWidth, y:brickHeight};
 
+	ctx.fillStyle = "blue";
+	ctx.strokeStyle = "blue";
 
+
+	var sizes = {x:9, y:8};
 
 
 		if (bricks) {
 
-			var sizes = {x:9, y:8};
 
 			var startPoint = {x:-blockWidth, y:-blockWidth};
 
@@ -185,6 +174,64 @@
 
 
 		}
+
+
+
+	if (rooms) {
+
+
+	ctx.fillStyle = "red";
+	ctx.strokeStyle = "red";
+
+		var internalSizeX = sizes.x * brickLength - blockWidth;
+		
+		var internalSizey = sizes.y * brickLength - blockWidth;
+		
+		
+		drawRoom({x:internalSizeX,y:internalSizey}, {x:0,y:0});
+		//drawRoom({x:internalSizeX + 2 * blockWidth,y:internalSizeY + 2 * blockWidth}, {x:-blockWidth,y:-blockWidth});
+
+
+		var partNarrow = 2;
+		var vaporAreaWidth = 1.5;
+		var bathWidth = 1;
+			
+		drawRoom({x:partNarrow,y:vaporAreaWidth - wallkWidth},      {x:0,y:(internalSizey - vaporAreaWidth) + wallkWidth}, "leiliruum");
+		drawRoom({x:partNarrow,y:bathWidth - wallkWidth / 2},    {x:0,y:vaporAreaWidth + wallkWidth / 2}, "bath");
+		drawRoom({x:1,y:1.5 - wallkWidth / 2},  {x:0,y:0}, "WC");
+		drawRoom({x:1,y:1.5 - wallkWidth / 2},  {x:1,y:0}, "tambur");
+
+		drawRoom({x:3 - wallkWidth,y:4},  {x:2 + wallkWidth,y:0}, "livingroom");
+
+	ctx.fillStyle = "black";
+	ctx.strokeStyle = "black";
+
+
+	}
+	
+	
+	if (sideWall) {
+		
+		var brickSize = {x: brickLength, y:brickHeight};
+		var currentY = 0;
+		for (ind=0; ind<13; ind++) {
+			
+			var shift = (ind % 2 == 0) ? 0 : blockWidth; 
+		
+			drawBrickLineX({x: shift, y: currentY}, brickSize, sizes.x);		
+			currentY = currentY + brickHeight;
+		
+			//console.log('y=' + currentY + ' ' + i)
+		}
+		
+		drawBrick({x:0.9, y:2.2}, {x:1.12 + blockWidth, y:0});
+		
+		drawBrick({x:1.6, y:brickHeight}, {x:1.05, y:2.2});
+		
+		
+	}
+
+
 
 
 

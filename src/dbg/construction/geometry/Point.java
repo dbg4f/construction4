@@ -27,14 +27,14 @@ public class Point {
         return z;
     }
 
-    public long get(Axle axle) {
-        if (axle == Axle.X) {
+    public long get(Axis axle) {
+        if (axle == Axis.X) {
             return getX();
         }
-        else if (axle == Axle.Y) {
+        else if (axle == Axis.Y) {
             return getY();
         }
-        else if (axle == Axle.Z) {
+        else if (axle == Axis.Z) {
             return getZ();
         }
         else {

@@ -3,7 +3,7 @@ package dbg.construction.geometry;
 /**
  * @author bogdel on 18.11.15.
  */
-public enum Axle {
+public enum Axis {
     X {
         @Override
         public CommonPlane normalFor() {

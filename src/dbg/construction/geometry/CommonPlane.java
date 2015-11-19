@@ -8,42 +8,42 @@ import dbg.construction.utils.Pair;
 public enum CommonPlane {
     XOY {
         @Override
-        public Axle getNormal() {
-            return Axle.Z;
+        public Axis getNormal() {
+            return Axis.Z;
         }
 
         @Override
-        public Pair<Axle> getAxles() {
-            return new Pair<Axle>(Axle.X, Axle.Y);
+        public Pair<Axis> getAxles() {
+            return new Pair<Axis>(Axis.X, Axis.Y);
         }
     },
 
     XOZ {
         @Override
-        public Axle getNormal() {
-            return Axle.Y;
+        public Axis getNormal() {
+            return Axis.Y;
         }
 
         @Override
-        public Pair<Axle> getAxles() {
-            return new Pair<Axle>(Axle.X, Axle.Z);
+        public Pair<Axis> getAxles() {
+            return new Pair<Axis>(Axis.X, Axis.Z);
         }
     },
 
     YOZ {
         @Override
-        public Axle getNormal() {
-            return Axle.X;
+        public Axis getNormal() {
+            return Axis.X;
         }
 
         @Override
-        public Pair<Axle> getAxles() {
-            return new Pair<Axle>(Axle.Y, Axle.Z);
+        public Pair<Axis> getAxles() {
+            return new Pair<Axis>(Axis.Y, Axis.Z);
         }
     };
 
-    public abstract Axle getNormal();
-    public abstract Pair<Axle> getAxles();
+    public abstract Axis getNormal();
+    public abstract Pair<Axis> getAxles();
 
 
 }

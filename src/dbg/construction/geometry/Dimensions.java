@@ -11,7 +11,7 @@ public class Dimensions {
         normalizedDimensions = new Point(x, y, z);
     }
 
-    public long get(Axle axle) {
+    public long get(Axis axle) {
         return normalizedDimensions.get(axle);
     };
 

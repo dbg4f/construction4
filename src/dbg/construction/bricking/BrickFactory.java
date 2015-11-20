@@ -25,7 +25,7 @@ public class BrickFactory {
     }
 
     public Brick newBrick(CommonPlane faceOrientation, Point center) {
-        return new Brick(brickType + " " + serialNumberSource.incrementAndGet(), geometry, faceOrientation, center);
+        return new Brick(brickType + " " + serialNumberSource.incrementAndGet(), geometry, faceOrientation, orientation, center);
     }
 
     public Brick newBrick() {

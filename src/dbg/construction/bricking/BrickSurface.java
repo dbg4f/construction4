@@ -1,5 +1,8 @@
 package dbg.construction.bricking;
 
+import dbg.construction.geometry.CommonPlane;
+import dbg.construction.utils.Triplet;
+
 /**
  * @author bogdel on 18.11.15.
  */

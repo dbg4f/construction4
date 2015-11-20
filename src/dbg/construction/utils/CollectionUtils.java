@@ -5,14 +5,18 @@ import java.util.*;
 /**
  * @author bogdel on 18.11.15.
  */
-public class CollectionUtils<T> {
+public class CollectionUtils {
 
-    void assertAllDifferent(T... entities) {
-        ArrayList<T> list = new ArrayList<>(Arrays.asList(entities));
-        Set<T> set = new LinkedHashSet<>(list);
+    public static void assertAllDifferent(Object... entities) {
+        assertAllDifferent(Arrays.asList(entities));
+    }
 
-        if (set.size() != list.size()) {
-            throw new IllegalArgumentException("All entities must be different: " + list + ", " + set);
+    public static void assertAllDifferent(List<?> entities) {
+
+        Set<?> set = new LinkedHashSet<>(entities);
+
+        if (set.size() != entities.size()) {
+            throw new IllegalArgumentException("All entities must be different: " + entities + ", " + set);
         }
 
     }

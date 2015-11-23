@@ -2,6 +2,7 @@ package dbg.construction.bricking;
 
 import dbg.construction.geometry.CommonPlane;
 import dbg.construction.geometry.Point;
+import dbg.construction.utils.UniquePair;
 
 import java.util.concurrent.atomic.AtomicLong;
 
@@ -17,19 +18,22 @@ public class BrickFactory {
     private static AtomicLong serialNumberSource = new AtomicLong();
 
     private final Point DEFAULT_CENTER = new Point(0, 0, 0);
-    private final CommonPlane DEFAULT_FACE = CommonPlane.XOZ;
+    private final BrickOrientation DEFAULT_ORIENTATION = new BrickOrientation(
+            new UniquePair<BrickSurface>(BrickSurface.FACE, BrickSurface.BED),
+            new UniquePair<CommonPlane>(CommonPlane.XOZ, CommonPlane.XOY)
+    );
 
     public BrickFactory(String brickType, ParallelepipedBrickGeometry geometry) {
         this.brickType = brickType;
         this.geometry = geometry;
     }
 
-    public Brick newBrick(CommonPlane faceOrientation, Point center) {
-        return new Brick(brickType + " " + serialNumberSource.incrementAndGet(), geometry, faceOrientation, orientation, center);
+    public Brick newBrick(Point center) {
+        return new Brick(brickType + " " + serialNumberSource.incrementAndGet(), geometry, DEFAULT_ORIENTATION, center);
     }
 
     public Brick newBrick() {
-        return newBrick(DEFAULT_FACE, DEFAULT_CENTER);
+        return newBrick(DEFAULT_CENTER);
     }
 
     public long producedCount() {

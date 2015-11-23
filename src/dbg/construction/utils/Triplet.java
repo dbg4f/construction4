@@ -12,6 +12,12 @@ public class Triplet <T> {
     private final T second;
     private final T third;
 
+    public Triplet(Pair<T> pair, T third) {
+        this.first = pair.getFirst();
+        this.second = pair.getSecond();
+        this.third = third;
+    }
+
     public Triplet(T first, T second, T third) {
         this.first = first;
         this.second = second;

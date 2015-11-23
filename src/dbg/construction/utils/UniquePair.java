@@ -8,4 +8,9 @@ public class UniquePair<T> extends Pair<T> {
         super(first, second);
         CollectionUtils.assertAllDifferent(asList());
     }
+
+    @Override
+    public String toString() {
+        return "UniquePair{} " + super.toString();
+    }
 }

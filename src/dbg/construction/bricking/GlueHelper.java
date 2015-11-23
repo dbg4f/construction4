@@ -1,9 +1,7 @@
 package dbg.construction.bricking;
 
-import dbg.construction.geometry.Dimensions;
-import dbg.construction.geometry.Intersections;
-import dbg.construction.geometry.PlaneSide;
-import dbg.construction.geometry.Point;
+import dbg.construction.geometry.*;
+import dbg.construction.utils.Pair;
 import dbg.construction.utils.Triplet;
 
 /**
@@ -11,7 +9,37 @@ import dbg.construction.utils.Triplet;
  */
 public class GlueHelper {
 
-    public Brick glue(Brick brick, Triplet<PlaneSide> glueTo) {
+    private final Pair<PlaneSide> rowPlaneSides;
+
+    public GlueHelper(Pair<PlaneSide> rowPlaneSides) {
+        this.rowPlaneSides = rowPlaneSides;
+    }
+
+    public Brick glue(Brick brick, PlaneSide glueTo) {
+        return glue(brick, new Triplet<>(rowPlaneSides, glueTo));
+    }
+
+    public Brick[] glueRow(PlaneSide startPlane, BrickFactory factory, int count) {
+
+        Brick[] row = new Brick[count];
+
+        PlaneSide currentPlane = startPlane;
+
+        for (int i=0; i<count; i++) {
+
+            Brick newBrick = glue(factory.newBrick(), currentPlane);
+
+            row[i] = newBrick;
+
+            currentPlane = findBrickPlaneSide(newBrick, startPlane.getPlane().getCommonPlane(), startPlane.isNormalDirection());
+
+        }
+
+        return row;
+
+    }
+
+    private Brick glue(Brick brick, Triplet<PlaneSide> glueTo) {
 
         Point refPoint = Intersections.intersect(glueTo);
 
@@ -19,9 +47,25 @@ public class GlueHelper {
 
         Dimensions half = brick.getDimensions().half();
 
+        return moveBrick(brick, refPoint, directions, half);
+
+    }
+
+    private Brick moveBrick(Brick brick, Point refPoint, Triplet<Boolean> directions, Dimensions half) {
         return new Brick(brick.getId(), brick.getGeometry(), brick.getOrientation(), refPoint.moveTo(half, directions));
+    }
 
+    public static PlaneSide findBrickPlaneSide(Brick brick, CommonPlane commonPlane, boolean sideRespectingNormal) {
 
+        Point center = brick.getCenter();
+        Axis commonPlaneNormal = commonPlane.getNormal();
+        long dimensionAlongAxis = brick.getDimensions().get(commonPlaneNormal);
+
+        long centerSurplus = dimensionAlongAxis / 2;
+
+        long coordinate = center.get(commonPlaneNormal) + (sideRespectingNormal ? centerSurplus : -centerSurplus);
+
+        return new PlaneSide(new Plane(commonPlane, coordinate), sideRespectingNormal);
 
     }
 

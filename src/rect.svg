@@ -2,17 +2,25 @@
 <html>
 <body>
 
-<svg width="700" height="200">
+<svg width="700" height="700">
 
-  <rect x="100.0" y="100.0" width="60.0" height="20.0" style="fill:blue;stroke:black;stroke-width:1;fill-opacity:0.1;stroke-opacity:0.9" />
-  <rect x="160.0" y="100.0" width="60.0" height="20.0" style="fill:blue;stroke:black;stroke-width:1;fill-opacity:0.1;stroke-opacity:0.9" />
-  <rect x="220.0" y="100.0" width="60.0" height="20.0" style="fill:blue;stroke:black;stroke-width:1;fill-opacity:0.1;stroke-opacity:0.9" />
-  <rect x="280.0" y="100.0" width="60.0" height="20.0" style="fill:blue;stroke:black;stroke-width:1;fill-opacity:0.1;stroke-opacity:0.9" />
-  <rect x="340.0" y="100.0" width="60.0" height="20.0" style="fill:blue;stroke:black;stroke-width:1;fill-opacity:0.1;stroke-opacity:0.9" />
-  <rect x="400.0" y="100.0" width="60.0" height="20.0" style="fill:blue;stroke:black;stroke-width:1;fill-opacity:0.1;stroke-opacity:0.9" />
-  <rect x="460.0" y="100.0" width="60.0" height="20.0" style="fill:blue;stroke:black;stroke-width:1;fill-opacity:0.1;stroke-opacity:0.9" />
-  <rect x="520.0" y="100.0" width="60.0" height="20.0" style="fill:blue;stroke:black;stroke-width:1;fill-opacity:0.1;stroke-opacity:0.9" />
-
+<rect x="100" y="100" width="60" height="37" style="fill:blue;stroke:black;stroke-width:1;fill-opacity:0.1;stroke-opacity:0.9" />
+<rect x="160" y="100" width="60" height="37" style="fill:blue;stroke:black;stroke-width:1;fill-opacity:0.1;stroke-opacity:0.9" />
+<rect x="220" y="100" width="60" height="37" style="fill:blue;stroke:black;stroke-width:1;fill-opacity:0.1;stroke-opacity:0.9" />
+<rect x="280" y="100" width="60" height="37" style="fill:blue;stroke:black;stroke-width:1;fill-opacity:0.1;stroke-opacity:0.9" />
+<rect x="340" y="100" width="60" height="37" style="fill:blue;stroke:black;stroke-width:1;fill-opacity:0.1;stroke-opacity:0.9" />
+<rect x="400" y="100" width="60" height="37" style="fill:blue;stroke:black;stroke-width:1;fill-opacity:0.1;stroke-opacity:0.9" />
+<rect x="460" y="100" width="60" height="37" style="fill:blue;stroke:black;stroke-width:1;fill-opacity:0.1;stroke-opacity:0.9" />
+<rect x="520" y="100" width="60" height="37" style="fill:blue;stroke:black;stroke-width:1;fill-opacity:0.1;stroke-opacity:0.9" />
+<rect x="580" y="100" width="60" height="37" style="fill:blue;stroke:black;stroke-width:1;fill-opacity:0.1;stroke-opacity:0.9" />
+<rect x="100" y="137" width="37" height="60" style="fill:blue;stroke:black;stroke-width:1;fill-opacity:0.1;stroke-opacity:0.9" />
+<rect x="100" y="197" width="37" height="60" style="fill:blue;stroke:black;stroke-width:1;fill-opacity:0.1;stroke-opacity:0.9" />
+<rect x="100" y="257" width="37" height="60" style="fill:blue;stroke:black;stroke-width:1;fill-opacity:0.1;stroke-opacity:0.9" />
+<rect x="100" y="317" width="37" height="60" style="fill:blue;stroke:black;stroke-width:1;fill-opacity:0.1;stroke-opacity:0.9" />
+<rect x="100" y="377" width="37" height="60" style="fill:blue;stroke:black;stroke-width:1;fill-opacity:0.1;stroke-opacity:0.9" />
+<rect x="100" y="437" width="37" height="60" style="fill:blue;stroke:black;stroke-width:1;fill-opacity:0.1;stroke-opacity:0.9" />
+<rect x="100" y="497" width="37" height="60" style="fill:blue;stroke:black;stroke-width:1;fill-opacity:0.1;stroke-opacity:0.9" />
+<rect x="100" y="557" width="37" height="60" style="fill:blue;stroke:black;stroke-width:1;fill-opacity:0.1;stroke-opacity:0.9" />
 
 </svg>
 

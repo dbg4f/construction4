@@ -6,6 +6,10 @@ import dbg.construction.geometry.Dimensions;
 import dbg.construction.geometry.Point;
 import dbg.construction.utils.Pair;
 
+import java.util.Arrays;
+import java.util.stream.Collectors;
+import java.util.stream.LongStream;
+
 /**
  * @author bogdel on 23.11.15.
  */
@@ -35,8 +39,26 @@ public class SvgRect {
 
     }
 
+    public long[] asArray() {
+        return new long[] {x, y, width, height};
+    }
+
+    public long[] scaledArray(double scale) {
+
+        long[] array = asArray();
+
+        return Arrays.stream(array).map(i -> (long)(i * scale)).toArray();
+    }
+
     public String toSvg(double scale) {
-        return String.format("<rect x=\"%s\" y=\"%s\" width=\"%s\" height=\"%s\" style=\"fill:blue;stroke:black;stroke-width:1;fill-opacity:0.1;stroke-opacity:0.9\" />", x*scale, y*scale, width*scale, height *scale);
+
+
+        long[] longs = scaledArray(scale);
+        return String.format("<rect x=\"%s\" y=\"%s\" width=\"%s\" height=\"%s\" style=\"fill:blue;stroke:black;stroke-width:1;fill-opacity:0.1;stroke-opacity:0.9\" />", longs[0], longs[1], longs[2], longs[3]);
+    }
+
+    private Object[] getObjects(double scale) {
+        return new Object[]{Math.round(x * scale), Math.round(y * scale), Math.round(width * scale), Math.round(height * scale)};
     }
 
     @Override

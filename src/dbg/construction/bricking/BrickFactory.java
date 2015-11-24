@@ -18,18 +18,20 @@ public class BrickFactory {
     private static AtomicLong serialNumberSource = new AtomicLong();
 
     private final Point DEFAULT_CENTER = new Point(0, 0, 0);
-    private final BrickOrientation DEFAULT_ORIENTATION = new BrickOrientation(
-            new UniquePair<BrickSurface>(BrickSurface.FACE, BrickSurface.BED),
-            new UniquePair<CommonPlane>(CommonPlane.XOZ, CommonPlane.XOY)
-    );
+
+    private BrickOrientation orientation = Registry.ORIENTATION_ALONG_LENGTH;
 
     public BrickFactory(String brickType, ParallelepipedBrickGeometry geometry) {
         this.brickType = brickType;
         this.geometry = geometry;
     }
 
+    public void setOrientation(BrickOrientation orientation) {
+        this.orientation = orientation;
+    }
+
     public Brick newBrick(Point center) {
-        return new Brick(brickType + " " + serialNumberSource.incrementAndGet(), geometry, DEFAULT_ORIENTATION, center);
+        return new Brick(brickType + " " + serialNumberSource.incrementAndGet(), geometry, orientation, center);
     }
 
     public Brick newBrick() {

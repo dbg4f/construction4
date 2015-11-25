@@ -19,6 +19,10 @@ public class GlueHelper {
         return glue(brick, new Triplet<>(rowPlaneSides, glueTo));
     }
 
+    public static BrickOrientation toggleOrientation(BrickOrientation orientation) {
+        return orientation == Registry.ORIENTATION_ALONG_LENGTH ? Registry.ORIENTATION_ALONG_WIDTH : Registry.ORIENTATION_ALONG_LENGTH;
+    }
+
     public Brick[] glueRow(PlaneSide startPlane, BrickFactory factory, int count) {
 
         Brick[] row = new Brick[count];

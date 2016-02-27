@@ -100,5 +100,24 @@ Viimane lõik: 26.86 m
 
 
 
+LWPOLYLINE  Layer: "PIIR"
+                            Space: Model space
+                   Color: BYLAYER    Linetype: "KATASTRIPIIR"
+                   Handle = 4622
+              Open
+    Constant width    0.0000
+              area   1774.0765
+            length   175.2585
+          at point  X=532651.9398  Y=6580610.6912  Z=   0.0000
+          at point  X=532675.1743  Y=6580618.6872  Z=   0.0000
+          at point  X=532676.4200  Y=6580614.9915  Z=   0.0000
+          at point  X=532683.7717  Y=6580593.0171  Z=   0.0000
+          at point  X=532691.3918  Y=6580570.7206  Z=   0.0000
+          at point  X=532696.9300  Y=6580554.3400  Z=   0.0000
+          at point  X=532677.4847  Y=6580547.6338  Z=   0.0000
+          at point  X=532675.5350  Y=6580553.3032  Z=   0.0000
+          at point  X=532669.2747  Y=6580551.1449  Z=   0.0000
+          at point  X=532654.2891  Y=6580594.5773  Z=   0.0000
+          at point  X=532656.5009  Y=6580597.4550  Z=   0.0000
 
 

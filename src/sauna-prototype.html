@@ -140,7 +140,8 @@
 	var brickWallX 	= false;
 	var brickWallY 	= false;
 	var bricks 		= false;
-	var sideWall	= true;
+	var sideWall	= false;
+	var sideWall2	= true;
 
 	var brickHeight = 0.2;
 	var brickLength = 0.6;
@@ -229,6 +230,28 @@
 		drawBrick({x:1.6, y:brickHeight}, {x:1.05, y:2.2});
 		
 		
+	}
+
+
+	if (sideWall2) {
+
+		var brickSize = {x: brickLength, y:brickHeight};
+		var currentY = 0;
+		for (ind=0; ind<13+10; ind++) {
+
+			var shift = (ind % 2 == 0) ? 0 : blockWidth;
+
+			drawBrickLineX({x: shift, y: currentY}, brickSize, sizes.y);
+			currentY = currentY + brickHeight;
+
+			//console.log('y=' + currentY + ' ' + i)
+		}
+
+		//drawBrick({x:0.9, y:2.2}, {x:1.12 + blockWidth, y:0});
+
+		//drawBrick({x:1.6, y:brickHeight}, {x:1.05, y:2.2});
+
+
 	}
 
 

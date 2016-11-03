@@ -1,0 +1,53 @@
+Request URL:http://localhost:8089/telemetry
+Request Method:POST
+Status Code:302 Found
+Remote Address:127.0.0.1:8089
+
+Response Headers
+view parsed
+
+HTTP/1.1 302 Found
+Server: Development/1.0
+Date: Thu, 03 Nov 2016 14:21:44 GMT
+Cache-Control: no-cache
+Expires: Fri, 01 Jan 1990 00:00:00 GMT
+Content-Length: 0
+Location: /telemetry.jsp
+
+Request Headers
+view parsed
+
+POST /telemetry HTTP/1.1
+Host: localhost:8089
+Connection: keep-alive
+Content-Length: 10
+Pragma: no-cache
+Cache-Control: no-cache
+Accept: text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,*/*;q=0.8
+Origin: http://localhost:63342
+Upgrade-Insecure-Requests: 1
+User-Agent: Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/47.0.2526.111 Safari/537.36
+Content-Type: application/x-www-form-urlencoded
+Referer: http://localhost:63342/appengine-java-guestbook-multiphase/guestbook/src/main/webapp/1.html?_ijt=b7ut2io2q5avejqkbo94unth7l
+Accept-Encoding: gzip, deflate
+Accept-Language: en-US,en;q=0.8
+Cookie: hanza=evtFKhp/ic8ocJxgkkOtHw; Idea-e9a864cc=f79815ed-8333-48d6-a69b-d8ef4fd17584
+
+Form Data
+view parsed
+
+sample=ddd
+
+
+
+POST /telemetry HTTP/1.1
+Host: localhost:8089
+Connection: keep-alive
+Content-Length: 10
+Pragma: no-cache
+Cache-Control: no-cache
+Origin: http://localhost:63342
+Upgrade-Insecure-Requests: 1
+Content-Type: application/x-www-form-urlencoded
+
+aaabbbccc

@@ -121,11 +121,11 @@ void set_blocking (int fd, int should_block)
 
 //----------------------------------------------------------------------------------------------------------------------------------
 
-int http_post(char* data)
+int http_post(char* host, int port, char* data)
 {
     /* first what are we going to send and where are we going to send it? */
-    int portno =        8089;
-    char *host =        "localhost";
+    //int portno =        8089;
+    //char *host =        "localhost";
     //char *message_fmt = "POST /data=%s HTTP/1.0\r\n\r\n";
 
     char *message_fmt =
@@ -146,35 +146,38 @@ int http_post(char* data)
     char message[1024],response[4096];
 
     /* fill in the parameters */
-    sprintf(message,message_fmt, host, portno, strlen(data), data);
+    sprintf(message,message_fmt, host, port, strlen(data), data);
 
 
-    printf("Request:\n%s\n",message);
+    log_print(1, "Request (%s:%d):\n%s\n", host, port, message);
 
     /* create the socket */
     sockfd = socket(AF_INET, SOCK_STREAM, 0);
     if (sockfd < 0)
     {
-      error("ERROR opening socket");
+      log_print(0, "HTTP POST: ERROR opening socket");
+      return;
     }
 
     /* lookup the ip address */
     server = gethostbyname(host);
     if (server == NULL)
     {
-      error("ERROR, no such host");
+      log_print(0, "HTTP POST: ERROR, no such host");
+      return;
     }
 
     /* fill in the structure */
     memset(&serv_addr,0,sizeof(serv_addr));
     serv_addr.sin_family = AF_INET;
-    serv_addr.sin_port = htons(portno);
+    serv_addr.sin_port = htons(port);
     memcpy(&serv_addr.sin_addr.s_addr,server->h_addr,server->h_length);
 
     /* connect the socket */
     if (connect(sockfd,(struct sockaddr *)&serv_addr,sizeof(serv_addr)) < 0)
     {
-        error("ERROR connecting");
+        log_print(0, "HTTP POST: ERROR connecting");
+        return;
     }
 
     /* send the request */
@@ -183,10 +186,10 @@ int http_post(char* data)
     do {
         bytes = write(sockfd,message+sent,total-sent);
 
-        log_print(1, "Bytes  write %d %d %d", bytes, sent, total);
+        //log_print(1, "Bytes  write %d %d %d", bytes, sent, total);
 
         if (bytes < 0)
-            error("ERROR writing message to socket");
+            error("HTTP POST: ERROR writing message to socket");
         if (bytes == 0)
             break;
         sent+=bytes;
@@ -202,7 +205,7 @@ int http_post(char* data)
         log_print(1, "Bytes  read %d %d %d", bytes, received, total);
 
         if (bytes < 0)
-            error("ERROR reading response from socket");
+            error("HTTP POST: ERROR reading response from socket");
         if (bytes == 0)
             break;
 
@@ -212,14 +215,12 @@ int http_post(char* data)
         received+=bytes;
     } while (received < total);
 
-    if (received == total)
-        error("ERROR storing complete response from socket");
 
     /* close the socket */
     close(sockfd);
 
     /* process response */
-    printf("Response:\n%s\n",response);
+    log_print(1, "Response:\n%s\n",response);
 
     return 0;
 }
@@ -227,15 +228,8 @@ int http_post(char* data)
 main (int argc, char **argv) {
 
     char portname[100];
-
-    memset(portname, 0, sizeof(portname));
-
-    http_post("sample=342342135");
-
-
-
-    log_print(1, "POST complete");
-
+    char host[200];
+    int port = 8080;
 
     //strcpy(portname, "/dev/pts/11");
     strcpy(portname, "/dev/ttyACM0");
@@ -244,19 +238,38 @@ main (int argc, char **argv) {
       strcpy(portname, argv[1]);
     }
 
-    log_print(1, "Opening %s", portname);
+    strcpy(host, "localhost");
 
-
-    int fd = open (portname, O_RDWR | O_NOCTTY | O_SYNC);
-
-    if (fd < 0)
-    {
-            error_message ("error %d opening %s: %s", errno, portname, strerror (errno));
-            return;
+    if (argc >= 3) {
+      strcpy(host, argv[2]);
     }
 
+    if (argc >= 4) {
+      port = atoi(argv[3]);
+    }
+
+
+    http_post(host, port, "sample=342342135");
+
+
+    log_print(1, "Opening %s", portname);
+
+    while (1) {
+
+      int fd = open (portname, O_RDWR | O_NOCTTY | O_SYNC);
+
+      if (fd < 0)
+      {
+              error_message ("error %d opening %s: %s, will try once more after several seconds", errno, portname, strerror (errno));
+              sleep(3);
+              continue;
+
+      }
+
+      log_print(1, "Opening %s OK", portname);
+
     set_interface_attribs (fd, B115200, 0);  // set speed to 115,200 bps, 8n1 (no parity)
-    set_blocking (fd, 0);                // set no blocking
+    set_blocking (fd, 1);                // set no blocking
 
     //write (fd, "hello!\n", 7);           // send 7 character greeting
 
@@ -270,13 +283,22 @@ main (int argc, char **argv) {
 
       int n = read (fd, buf, sizeof buf);  // read up to 100 characters if ready to read
 
+      log_print(1, "read %d: %s\n", n, buf);
+
       if (n > 0) {
         log_print(1, "read %d: %s\n", n, buf);
-
-        http_post(buf);
-
+        http_post(host, port, buf);
       }
 
+      if (n <= 0) {
+        log_print(1, "read failed, will re-try %d: %s\n", n, buf);
+        close(fd);
+        sleep(3);
+        break;
+      }
+
+
+    }
 
     }
 

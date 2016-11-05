@@ -51,3 +51,750 @@ Upgrade-Insecure-Requests: 1
 Content-Type: application/x-www-form-urlencoded
 
 aaabbbccc
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+root@OpenWrt:~# ./bridge_mips
+Sat Nov  5 10:19:10 2016
+Request (localhost:8080):
+POST /telemetry HTTP/1.1
+Host: localhost:8080
+Content-Length: 16
+Pragma: no-cache
+Cache-Control: no-cache
+Accept: text/html,application/xhtml+xml,application/xml
+Content-Type: application/x-www-form-urlencoded
+
+sample=342342135
+
+Sat Nov  5 10:19:10 2016
+HTTP POST: ERROR connecting
+Sat Nov  5 10:19:10 2016
+Opening /dev/ttyACM0
+Sat Nov  5 10:19:10 2016
+Opening /dev/ttyACM0 OK
+Sat Nov  5 10:19:11 2016
+read 17: {"sensorType":"DH
+
+Sat Nov  5 10:19:11 2016
+read 17: {"sensorType":"DH
+
+Sat Nov  5 10:19:11 2016
+Request (localhost:8080):
+POST /telemetry HTTP/1.1
+Host: localhost:8080
+Content-Length: 17
+Pragma: no-cache
+Cache-Control: no-cache
+Accept: text/html,application/xhtml+xml,application/xml
+Content-Type: application/x-www-form-urlencoded
+
+{"sensorType":"DH
+
+Sat Nov  5 10:19:11 2016
+HTTP POST: ERROR connecting
+Sat Nov  5 10:19:11 2016
+read 64: T22","sensorID":"1","t":22.000000,"h":32.000000,"dew":4.567059}
+
+
+Sat Nov  5 10:19:11 2016
+read 64: T22","sensorID":"1","t":22.000000,"h":32.000000,"dew":4.567059}
+
+
+Sat Nov  5 10:19:11 2016
+Request (localhost:8080):
+POST /telemetry HTTP/1.1
+Host: localhost:8080
+Content-Length: 64
+Pragma: no-cache
+Cache-Control: no-cache
+Accept: text/html,application/xhtml+xml,application/xml
+Content-Type: application/x-www-form-urlencoded
+
+T22","sensorID":"1","t":22.000000,"h":32.000000,"dew":4.567059}
+
+
+Sat Nov  5 10:19:11 2016
+HTTP POST: ERROR connecting
+Sat Nov  5 10:19:14 2016
+read 17: {"sensorType":"DH1","t":22.000000,"h":32.000000,"dew":4.567059}
+
+
+Sat Nov  5 10:19:14 2016
+read 17: {"sensorType":"DH1","t":22.000000,"h":32.000000,"dew":4.567059}
+
+
+Sat Nov  5 10:19:14 2016
+Request (localhost:8080):
+POST /telemetry HTTP/1.1
+Host: localhost:8080
+Content-Length: 64
+Pragma: no-cache
+Cache-Control: no-cache
+Accept: text/html,application/xhtml+xml,application/xml
+Content-Type: application/x-www-form-urlencoded
+
+{"sensorType":"DH1","t":22.000000,"h":32.000000,"dew":4.567059}
+
+
+Sat Nov  5 10:19:14 2016
+HTTP POST: ERROR connecting
+Sat Nov  5 10:19:14 2016
+read 31: T22","sensorID":"1","error":6}
+00,"h":32.000000,"dew":4.567059}
+
+
+Sat Nov  5 10:19:14 2016
+read 31: T22","sensorID":"1","error":6}
+00,"h":32.000000,"dew":4.567059}
+
+
+Sat Nov  5 10:19:14 2016
+Request (localhost:8080):
+POST /telemetry HTTP/1.1
+Host: localhost:8080
+Content-Length: 64
+Pragma: no-cache
+Cache-Control: no-cache
+Accept: text/html,application/xhtml+xml,application/xml
+Content-Type: application/x-www-form-urlencoded
+
+T22","sensorID":"1","error":6}
+00,"h":32.000000,"dew":4.567059}
+
+
+Sat Nov  5 10:19:14 2016
+HTTP POST: ERROR connecting
+Sat Nov  5 10:19:16 2016
+read 5: {"sen"sensorID":"1","error":6}
+00,"h":32.000000,"dew":4.567059}
+
+
+Sat Nov  5 10:19:16 2016
+read 5: {"sen"sensorID":"1","error":6}
+00,"h":32.000000,"dew":4.567059}
+
+
+Sat Nov  5 10:19:16 2016
+Request (localhost:8080):
+POST /telemetry HTTP/1.1
+Host: localhost:8080
+Content-Length: 64
+Pragma: no-cache
+Cache-Control: no-cache
+Accept: text/html,application/xhtml+xml,application/xml
+Content-Type: application/x-www-form-urlencoded
+
+{"sen"sensorID":"1","error":6}
+00,"h":32.000000,"dew":4.567059}
+
+
+Sat Nov  5 10:19:16 2016
+HTTP POST: ERROR connecting
+Sat Nov  5 10:19:16 2016
+read 76: sorType":"DHT22","sensorID":"1","t":22.000000,"h":32.000000,"dew":4.567059}
+
+
+Sat Nov  5 10:19:16 2016
+read 76: sorType":"DHT22","sensorID":"1","t":22.000000,"h":32.000000,"dew":4.567059}
+
+
+Sat Nov  5 10:19:16 2016
+Request (localhost:8080):
+POST /telemetry HTTP/1.1
+Host: localhost:8080
+Content-Length: 76
+Pragma: no-cache
+Cache-Control: no-cache
+Accept: text/html,application/xhtml+xml,application/xml
+Content-Type: application/x-www-form-urlencoded
+
+sorType":"DHT22","sensorID":"1","t":22.000000,"h":32.000000,"dew":4.567059}
+
+
+Sat Nov  5 10:19:16 2016
+HTTP POST: ERROR connecting
+Sat Nov  5 10:19:19 2016
+read 9: {"sensorT"DHT22","sensorID":"1","t":22.000000,"h":32.000000,"dew":4.567059}
+
+
+Sat Nov  5 10:19:19 2016
+read 9: {"sensorT"DHT22","sensorID":"1","t":22.000000,"h":32.000000,"dew":4.567059}
+
+
+Sat Nov  5 10:19:19 2016
+Request (localhost:8080):
+POST /telemetry HTTP/1.1
+Host: localhost:8080
+Content-Length: 76
+Pragma: no-cache
+Cache-Control: no-cache
+Accept: text/html,application/xhtml+xml,application/xml
+Content-Type: application/x-www-form-urlencoded
+
+{"sensorT"DHT22","sensorID":"1","t":22.000000,"h":32.000000,"dew":4.567059}
+
+
+Sat Nov  5 10:19:19 2016
+HTTP POST: ERROR connecting
+Sat Nov  5 10:19:19 2016
+read 39: ype":"DHT22","sensorID":"1","error":6}
+000000,"h":32.000000,"dew":4.567059}
+
+
+Sat Nov  5 10:19:19 2016
+read 39: ype":"DHT22","sensorID":"1","error":6}
+000000,"h":32.000000,"dew":4.567059}
+
+
+Sat Nov  5 10:19:19 2016
+Request (localhost:8080):
+POST /telemetry HTTP/1.1
+Host: localhost:8080
+Content-Length: 76
+Pragma: no-cache
+Cache-Control: no-cache
+Accept: text/html,application/xhtml+xml,application/xml
+Content-Type: application/x-www-form-urlencoded
+
+ype":"DHT22","sensorID":"1","error":6}
+000000,"h":32.000000,"dew":4.567059}
+
+
+Sat Nov  5 10:19:19 2016
+HTTP POST: ERROR connecting
+Sat Nov  5 10:19:21 2016
+read 12: {"sensorType,"sensorID":"1","error":6}
+000000,"h":32.000000,"dew":4.567059}
+
+
+Sat Nov  5 10:19:21 2016
+read 12: {"sensorType,"sensorID":"1","error":6}
+000000,"h":32.000000,"dew":4.567059}
+
+
+Sat Nov  5 10:19:21 2016
+Request (localhost:8080):
+POST /telemetry HTTP/1.1
+Host: localhost:8080
+Content-Length: 76
+Pragma: no-cache
+Cache-Control: no-cache
+Accept: text/html,application/xhtml+xml,application/xml
+Content-Type: application/x-www-form-urlencoded
+
+{"sensorType,"sensorID":"1","error":6}
+000000,"h":32.000000,"dew":4.567059}
+
+
+Sat Nov  5 10:19:21 2016
+HTTP POST: ERROR connecting
+Sat Nov  5 10:19:21 2016
+read 69: ":"DHT22","sensorID":"1","t":22.000000,"h":32.000000,"dew":4.567059}
+67059}
+
+
+Sat Nov  5 10:19:21 2016
+read 69: ":"DHT22","sensorID":"1","t":22.000000,"h":32.000000,"dew":4.567059}
+67059}
+
+
+Sat Nov  5 10:19:21 2016
+Request (localhost:8080):
+POST /telemetry HTTP/1.1
+Host: localhost:8080
+Content-Length: 76
+Pragma: no-cache
+Cache-Control: no-cache
+Accept: text/html,application/xhtml+xml,application/xml
+Content-Type: application/x-www-form-urlencoded
+
+":"DHT22","sensorID":"1","t":22.000000,"h":32.000000,"dew":4.567059}
+67059}
+
+
+Sat Nov  5 10:19:21 2016
+HTTP POST: ERROR connecting
+^C
+root@OpenWrt:~#
+root@OpenWrt:~#
+root@OpenWrt:~# ping starman.ee
+PING starman.ee (62.65.192.24): 56 data bytes
+64 bytes from 62.65.192.24: seq=0 ttl=60 time=8.329 ms
+64 bytes from 62.65.192.24: seq=1 ttl=60 time=7.713 ms
+64 bytes from 62.65.192.24: seq=2 ttl=60 time=9.295 ms
+^C
+--- starman.ee ping statistics ---
+3 packets transmitted, 3 packets received, 0% packet loss
+round-trip min/avg/max = 7.713/8.445/9.295 ms
+root@OpenWrt:~# ./bridge_mips /dev/ttyACM0 http://valid-complex-90410.appspot.com/ 80
+Sat Nov  5 10:20:34 2016
+Request (http://valid-complex-90410.appspot.com/:80):
+POST /telemetry HTTP/1.1
+Host: http://valid-complex-90410.appspot.com/:80
+Content-Length: 16
+Pragma: no-cache
+Cache-Control: no-cache
+Accept: text/html,application/xhtml+xml,application/xml
+Content-Type: application/x-www-form-urlencoded
+
+sample=342342135
+
+Sat Nov  5 10:20:49 2016
+HTTP POST: ERROR, no such host
+Sat Nov  5 10:20:49 2016
+Opening /dev/ttyACM0
+Sat Nov  5 10:20:49 2016
+Opening /dev/ttyACM0 OK
+Sat Nov  5 10:20:50 2016
+read 14: {"sensorType":
+
+Sat Nov  5 10:20:50 2016
+read 14: {"sensorType":
+
+Sat Nov  5 10:20:50 2016
+Request (http://valid-complex-90410.appspot.com/:80):
+POST /telemetry HTTP/1.1
+Host: http://valid-complex-90410.appspot.com/:80
+Content-Length: 14
+Pragma: no-cache
+Cache-Control: no-cache
+Accept: text/html,application/xhtml+xml,application/xml
+Content-Type: application/x-www-form-urlencoded
+
+{"sensorType":
+
+Sat Nov  5 10:21:05 2016
+HTTP POST: ERROR, no such host
+Sat Nov  5 10:21:05 2016
+read 100: "DHT22","sensorID":"1","t":22.000000,"h":32.000000,"dew":4.567059}
+{"sensorType":"DHT22","sensorID":��w�Ӱ��
+
+Sat Nov  5 10:21:05 2016
+read 100: "DHT22","sensorID":"1","t":22.000000,"h":32.000000,"dew":4.567059}
+{"sensorType":"DHT22","sensorID":��w�Ӱ��
+
+Sat Nov  5 10:21:05 2016
+Request (http://valid-complex-90410.appspot.com/:80):
+POST /telemetry HTTP/1.1
+Host: http://valid-complex-90410.appspot.com/:80
+Content-Length: 112
+Pragma: no-cache
+Cache-Control: no-cache
+Accept: text/html,application/xhtml+xml,application/xml
+Content-Type: application/x-www-form-urlencoded
+
+"DHT22","sensorID":"1","t":22.000000,"h":32.000000,"dew":4.567059}
+{"sensorType":"DHT22","sensorID":��w�Ӱ��
+
+Sat Nov  5 10:21:20 2016
+HTTP POST: ERROR, no such host
+Sat Nov  5 10:21:20 2016
+read 100: "1","error":6}
+{"sensorType":"DHT22","sensorID":"1","error":6}
+{"sensorType":"DHT22","sensorID":"1",��w�Ӱ��
+
+Sat Nov  5 10:21:20 2016
+read 100: "1","error":6}
+{"sensorType":"DHT22","sensorID":"1","error":6}
+{"sensorType":"DHT22","sensorID":"1",��w�Ӱ��
+
+Sat Nov  5 10:21:20 2016
+Request (http://valid-complex-90410.appspot.com/:80):
+POST /telemetry HTTP/1.1
+Host: http://valid-complex-90410.appspot.com/:80
+Content-Length: 112
+Pragma: no-cache
+Cache-Control: no-cache
+Accept: text/html,application/xhtml+xml,application/xml
+Content-Type: application/x-www-form-urlencoded
+
+"1","error":6}
+{"sensorType":"DHT22","sensorID":"1","error":6}
+{"sensorType":"DHT22","sensorID":"1",��w�Ӱ��
+
+Sat Nov  5 10:21:35 2016
+HTTP POST: ERROR, no such host
+Sat Nov  5 10:21:35 2016
+read 100: "error":6}
+{"sensorType":"DHT22","sensorID":"1","error":6}
+{"sensorType":"DHT22","sensorID":"1","err��w�Ӱ��
+
+Sat Nov  5 10:21:35 2016
+read 100: "error":6}
+{"sensorType":"DHT22","sensorID":"1","error":6}
+{"sensorType":"DHT22","sensorID":"1","err��w�Ӱ��
+
+Sat Nov  5 10:21:35 2016
+Request (http://valid-complex-90410.appspot.com/:80):
+POST /telemetry HTTP/1.1
+Host: http://valid-complex-90410.appspot.com/:80
+Content-Length: 112
+Pragma: no-cache
+Cache-Control: no-cache
+Accept: text/html,application/xhtml+xml,application/xml
+Content-Type: application/x-www-form-urlencoded
+
+"error":6}
+{"sensorType":"DHT22","sensorID":"1","error":6}
+{"sensorType":"DHT22","sensorID":"1","err��w�Ӱ��
+
+Sat Nov  5 10:21:50 2016
+HTTP POST: ERROR, no such host
+Sat Nov  5 10:21:50 2016
+read 100: or":6}
+{"sensorType":"DHT22","sensorID":"1","error":6}
+{"sensorType":"DHT22","sensorID":"1","t":22.0��w�Ӱ��
+
+Sat Nov  5 10:21:50 2016
+read 100: or":6}
+{"sensorType":"DHT22","sensorID":"1","error":6}
+{"sensorType":"DHT22","sensorID":"1","t":22.0��w�Ӱ��
+
+Sat Nov  5 10:21:50 2016
+Request (http://valid-complex-90410.appspot.com/:80):
+POST /telemetry HTTP/1.1
+Host: http://valid-complex-90410.appspot.com/:80
+Content-Length: 112
+Pragma: no-cache
+Cache-Control: no-cache
+Accept: text/html,application/xhtml+xml,application/xml
+Content-Type: application/x-www-form-urlencoded
+
+or":6}
+{"sensorType":"DHT22","sensorID":"1","error":6}
+{"sensorType":"DHT22","sensorID":"1","t":22.0��w�Ӱ��
+
+Sat Nov  5 10:22:05 2016
+HTTP POST: ERROR, no such host
+Sat Nov  5 10:22:05 2016
+read 100: 00000,"h":32.000000,"dew":4.567059}
+{"sensorType":"DHT22","sensorID":"1","t":22.000000,"h":32.000000��w�Ӱ��
+
+Sat Nov  5 10:22:05 2016
+read 100: 00000,"h":32.000000,"dew":4.567059}
+{"sensorType":"DHT22","sensorID":"1","t":22.000000,"h":32.000000��w�Ӱ��
+
+Sat Nov  5 10:22:05 2016
+Request (http://valid-complex-90410.appspot.com/:80):
+POST /telemetry HTTP/1.1
+Host: http://valid-complex-90410.appspot.com/:80
+Content-Length: 112
+Pragma: no-cache
+Cache-Control: no-cache
+Accept: text/html,application/xhtml+xml,application/xml
+Content-Type: application/x-www-form-urlencoded
+
+00000,"h":32.000000,"dew":4.567059}
+{"sensorType":"DHT22","sensorID":"1","t":22.000000,"h":32.000000��w�Ӱ��
+
+Sat Nov  5 10:22:20 2016
+HTTP POST: ERROR, no such host
+Sat Nov  5 10:22:20 2016
+read 100: ,"dew":4.567059}
+{"sensorType":"DHT22","sensorID":"1","t":22.000000,"h":32.000000,"dew":4.567059}
+{"��w�Ӱ��
+
+Sat Nov  5 10:22:20 2016
+read 100: ,"dew":4.567059}
+{"sensorType":"DHT22","sensorID":"1","t":22.000000,"h":32.000000,"dew":4.567059}
+{"��w�Ӱ��
+
+Sat Nov  5 10:22:20 2016
+Request (http://valid-complex-90410.appspot.com/:80):
+POST /telemetry HTTP/1.1
+Host: http://valid-complex-90410.appspot.com/:80
+Content-Length: 112
+Pragma: no-cache
+Cache-Control: no-cache
+Accept: text/html,application/xhtml+xml,application/xml
+Content-Type: application/x-www-form-urlencoded
+
+,"dew":4.567059}
+{"sensorType":"DHT22","sensorID":"1","t":22.000000,"h":32.000000,"dew":4.567059}
+{"��w�Ӱ��
+
+Sat Nov  5 10:22:35 2016
+HTTP POST: ERROR, no such host
+Sat Nov  5 10:22:35 2016
+read 100: sensorType":"DHT22","sensorID":"1","t":22.000000,"h":32.000000,"dew":4.567059}
+{"sensorType":"DHT22"��w�Ӱ��
+
+Sat Nov  5 10:22:35 2016
+read 100: sensorType":"DHT22","sensorID":"1","t":22.000000,"h":32.000000,"dew":4.567059}
+{"sensorType":"DHT22"��w�Ӱ��
+
+Sat Nov  5 10:22:35 2016
+Request (http://valid-complex-90410.appspot.com/:80):
+POST /telemetry HTTP/1.1
+Host: http://valid-complex-90410.appspot.com/:80
+Content-Length: 112
+Pragma: no-cache
+Cache-Control: no-cache
+Accept: text/html,application/xhtml+xml,application/xml
+Content-Type: application/x-www-form-urlencoded
+
+sensorType":"DHT22","sensorID":"1","t":22.000000,"h":32.000000,"dew":4.567059}
+{"sensorType":"DHT22"��w�Ӱ��
+
+^C
+root@OpenWrt:~# ./bridge_mips /dev/ttyACM0 http://valid-complex-90410.appspot.com 80
+Sat Nov  5 10:22:42 2016
+Request (http://valid-complex-90410.appspot.com:80):
+POST /telemetry HTTP/1.1
+Host: http://valid-complex-90410.appspot.com:80
+Content-Length: 16
+Pragma: no-cache
+Cache-Control: no-cache
+Accept: text/html,application/xhtml+xml,application/xml
+Content-Type: application/x-www-form-urlencoded
+
+sample=342342135
+
+Sat Nov  5 10:22:57 2016
+HTTP POST: ERROR, no such host
+Sat Nov  5 10:22:57 2016
+Opening /dev/ttyACM0
+Sat Nov  5 10:22:57 2016
+Opening /dev/ttyACM0 OK
+Sat Nov  5 10:22:59 2016
+read 13: {"sensorType"
+
+Sat Nov  5 10:22:59 2016
+read 13: {"sensorType"
+
+Sat Nov  5 10:22:59 2016
+Request (http://valid-complex-90410.appspot.com:80):
+POST /telemetry HTTP/1.1
+Host: http://valid-complex-90410.appspot.com:80
+Content-Length: 13
+Pragma: no-cache
+Cache-Control: no-cache
+Accept: text/html,application/xhtml+xml,application/xml
+Content-Type: application/x-www-form-urlencoded
+
+{"sensorType"
+
+Sat Nov  5 10:23:14 2016
+HTTP POST: ERROR, no such host
+Sat Nov  5 10:23:14 2016
+read 100: :"DHT22","sensorID":"1","error":6}
+{"sensorType":"DHT22","sensorID":"1","t":22.000000,"h":32.000000,�n�wӰ�n�
+
+Sat Nov  5 10:23:14 2016
+read 100: :"DHT22","sensorID":"1","error":6}
+{"sensorType":"DHT22","sensorID":"1","t":22.000000,"h":32.000000,�n�wӰ�n�
+
+Sat Nov  5 10:23:14 2016
+Request (http://valid-complex-90410.appspot.com:80):
+POST /telemetry HTTP/1.1
+Host: http://valid-complex-90410.appspot.com:80
+Content-Length: 112
+Pragma: no-cache
+Cache-Control: no-cache
+Accept: text/html,application/xhtml+xml,application/xml
+Content-Type: application/x-www-form-urlencoded
+
+:"DHT22","sensorID":"1","error":6}
+{"sensorType":"DHT22","sensorID":"1","t":22.000000,"h":32.000000,�n�wӰ�n�
+
+Sat Nov  5 10:23:29 2016
+HTTP POST: ERROR, no such host
+Sat Nov  5 10:23:29 2016
+read 100: "dew":4.567059}
+{"sensorType":"DHT22","sensorID":"1","t":22.000000,"h":32.000000,"dew":4.567059}
+{"s�n�wӰ�n�
+
+Sat Nov  5 10:23:29 2016
+read 100: "dew":4.567059}
+{"sensorType":"DHT22","sensorID":"1","t":22.000000,"h":32.000000,"dew":4.567059}
+{"s�n�wӰ�n�
+
+Sat Nov  5 10:23:29 2016
+Request (http://valid-complex-90410.appspot.com:80):
+POST /telemetry HTTP/1.1
+Host: http://valid-complex-90410.appspot.com:80
+Content-Length: 112
+Pragma: no-cache
+Cache-Control: no-cache
+Accept: text/html,application/xhtml+xml,application/xml
+Content-Type: application/x-www-form-urlencoded
+
+"dew":4.567059}
+{"sensorType":"DHT22","sensorID":"1","t":22.000000,"h":32.000000,"dew":4.567059}
+{"s�n�wӰ�n�
+
+Sat Nov  5 10:23:44 2016
+HTTP POST: ERROR, no such host
+Sat Nov  5 10:23:44 2016
+read 100: ensorType":"DHT22","sensorID":"1","t":22.000000,"h":32.000000,"dew":4.567059}
+{"sensorType":"DHT22",�n�wӰ�n�
+
+Sat Nov  5 10:23:44 2016
+read 100: ensorType":"DHT22","sensorID":"1","t":22.000000,"h":32.000000,"dew":4.567059}
+{"sensorType":"DHT22",�n�wӰ�n�
+
+Sat Nov  5 10:23:44 2016
+Request (http://valid-complex-90410.appspot.com:80):
+POST /telemetry HTTP/1.1
+Host: http://valid-complex-90410.appspot.com:80
+Content-Length: 112
+Pragma: no-cache
+Cache-Control: no-cache
+Accept: text/html,application/xhtml+xml,application/xml
+Content-Type: application/x-www-form-urlencoded
+
+ensorType":"DHT22","sensorID":"1","t":22.000000,"h":32.000000,"dew":4.567059}
+{"sensorType":"DHT22",�n�wӰ�n�
+
+Sat Nov  5 10:23:59 2016
+HTTP POST: ERROR, no such host
+Sat Nov  5 10:23:59 2016
+read 100: "sensorID":"1","t":22.000000,"h":32.000000,"dew":4.567059}
+{"sensorType":"DHT22","sensorID":"1","t":�n�wӰ�n�
+
+Sat Nov  5 10:23:59 2016
+read 100: "sensorID":"1","t":22.000000,"h":32.000000,"dew":4.567059}
+{"sensorType":"DHT22","sensorID":"1","t":�n�wӰ�n�
+
+Sat Nov  5 10:23:59 2016
+Request (http://valid-complex-90410.appspot.com:80):
+POST /telemetry HTTP/1.1
+Host: http://valid-complex-90410.appspot.com:80
+Content-Length: 112
+Pragma: no-cache
+Cache-Control: no-cache
+Accept: text/html,application/xhtml+xml,application/xml
+Content-Type: application/x-www-form-urlencoded
+
+"sensorID":"1","t":22.000000,"h":32.000000,"dew":4.567059}
+{"sensorType":"DHT22","sensorID":"1","t":�n�wӰ�n�
+
+^C
+root@OpenWrt:~# ./bridge_mips /dev/ttyACM0 http://valid-complex-90410.appspot.com 80
+Sat Nov  5 10:24:18 2016
+Request (http://valid-complex-90410.appspot.com:80):
+POST /telemetry HTTP/1.1
+Host: http://valid-complex-90410.appspot.com:80
+Content-Length: 16
+Pragma: no-cache
+Cache-Control: no-cache
+Accept: text/html,application/xhtml+xml,application/xml
+Content-Type: application/x-www-form-urlencoded
+
+sample=342342135
+
+^C
+root@OpenWrt:~# ./bridge_mips /dev/ttyACM0 valid-complex-90410.appspot.com 80
+Sat Nov  5 10:24:33 2016
+Request (valid-complex-90410.appspot.com:80):
+POST /telemetry HTTP/1.1
+Host: valid-complex-90410.appspot.com:80
+Content-Length: 16
+Pragma: no-cache
+Cache-Control: no-cache
+Accept: text/html,application/xhtml+xml,application/xml
+Content-Type: application/x-www-form-urlencoded
+
+sample=342342135
+
+Sat Nov  5 10:24:48 2016
+HTTP POST: ERROR, no such host
+Sat Nov  5 10:24:48 2016
+Opening /dev/ttyACM0
+Sat Nov  5 10:24:48 2016
+Opening /dev/ttyACM0 OK
+Sat Nov  5 10:24:50 2016
+read 8: {"sensor
+
+Sat Nov  5 10:24:50 2016
+read 8: {"sensor
+
+Sat Nov  5 10:24:50 2016
+Request (valid-complex-90410.appspot.com:80):
+POST /telemetry HTTP/1.1
+Host: valid-complex-90410.appspot.com:80
+Content-Length: 8
+Pragma: no-cache
+Cache-Control: no-cache
+Accept: text/html,application/xhtml+xml,application/xml
+Content-Type: application/x-www-form-urlencoded
+
+{"sensor
+
+Sat Nov  5 10:25:05 2016
+HTTP POST: ERROR, no such host
+Sat Nov  5 10:25:05 2016
+read 100: Type":"DHT22","sensorID":"1","error":6}
+{"sensorType":"DHT22","sensorID":"1","error":6}
+{"sensorType��w�����
+
+Sat Nov  5 10:25:05 2016
+read 100: Type":"DHT22","sensorID":"1","error":6}
+{"sensorType":"DHT22","sensorID":"1","error":6}
+{"sensorType��w�����
+
+Sat Nov  5 10:25:05 2016
+Request (valid-complex-90410.appspot.com:80):
+POST /telemetry HTTP/1.1
+Host: valid-complex-90410.appspot.com:80
+Content-Length: 112
+Pragma: no-cache
+Cache-Control: no-cache
+Accept: text/html,application/xhtml+xml,application/xml
+Content-Type: application/x-www-form-urlencoded
+
+Type":"DHT22","sensorID":"1","error":6}
+{"sensorType":"DHT22","sensorID":"1","error":6}
+{"sensorType��w�����
+
+^C
+root@OpenWrt:~#
+root@OpenWrt:~#
+root@OpenWrt:~#
+root@OpenWrt:~#
+root@OpenWrt:~# ./bridge_mips /dev/ttyACM0 valid-complex-90410.appspot.com 80
+Sat Nov  5 10:25:24 2016
+Request (valid-complex-90410.appspot.com:80):
+POST /telemetry HTTP/1.1
+Host: valid-complex-90410.appspot.com:80
+Content-Length: 16
+Pragma: no-cache
+Cache-Control: no-cache
+Accept: text/html,application/xhtml+xml,application/xml
+Content-Type: application/x-www-form-urlencoded
+
+sample=342342135
+
+Sat Nov  5 10:25:39 2016
+HTTP POST: ERROR, no such host
+Sat Nov  5 10:25:39 2016
+Opening /dev/ttyACM0
+Sat Nov  5 10:25:39 2016
+Opening /dev/ttyACM0 OK
+Sat Nov  5 10:25:40 2016
+read 16: {"sensorType":"D
+
+Sat Nov  5 10:25:40 2016
+read 16: {"sensorType":"D
+
+Sat Nov  5 10:25:40 2016
+Request (valid-complex-90410.appspot.com:80):
+POST /telemetry HTTP/1.1
+Host: valid-complex-90410.appspot.com:80
+Content-Length: 16
+Pragma: no-cache
+Cache-Control: no-cache
+Accept: text/html,application/xhtml+xml,application/xml
+Content-Type: application/x-www-form-urlencoded

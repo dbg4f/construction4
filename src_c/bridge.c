@@ -156,7 +156,7 @@ int http_post(char* host, int port, char* data)
     if (sockfd < 0)
     {
       log_print(0, "HTTP POST: ERROR opening socket");
-      return;
+      return -1;
     }
 
     /* lookup the ip address */
@@ -164,7 +164,7 @@ int http_post(char* host, int port, char* data)
     if (server == NULL)
     {
       log_print(0, "HTTP POST: ERROR, no such host");
-      return;
+      return -2;
     }
 
     /* fill in the structure */
@@ -177,7 +177,7 @@ int http_post(char* host, int port, char* data)
     if (connect(sockfd,(struct sockaddr *)&serv_addr,sizeof(serv_addr)) < 0)
     {
         log_print(0, "HTTP POST: ERROR connecting");
-        return;
+        return -3;
     }
 
     /* send the request */
@@ -231,6 +231,9 @@ main (int argc, char **argv) {
     char host[200];
     int port = 8080;
 
+    log_print(1, "Serial-to-HTTP bridge, version "__DATE__" "__TIME__);
+
+
     //strcpy(portname, "/dev/pts/11");
     strcpy(portname, "/dev/ttyACM0");
 
@@ -275,19 +278,21 @@ main (int argc, char **argv) {
 
     //usleep ((7 + 25) * 100);             // sleep enough to transmit the 7 plus
                                          // receive 25:  approx 100 uS per char transmit
-    char buf [100];
+    char buf [300];
 
-    memset(buf, 0, 100);
+    //memset(buf, 0, 300);
 
     while (1) {
 
-      int n = read (fd, buf, sizeof buf);  // read up to 100 characters if ready to read
+       memset(buf, 0, 300);
 
-      log_print(1, "read %d: %s\n", n, buf);
+      int n = read (fd, buf, sizeof(buf));
+
+      //log_print(1, "read %d: %s\n", n, buf);
 
       if (n > 0) {
         log_print(1, "read %d: %s\n", n, buf);
-        http_post(host, port, buf);
+        //http_post(host, port, buf);
       }
 
       if (n <= 0) {

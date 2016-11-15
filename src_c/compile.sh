@@ -1,0 +1,1 @@
+gcc -o bridge bridge.c jsmn.c buffer.c -lpthread

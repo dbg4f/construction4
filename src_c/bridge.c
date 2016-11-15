@@ -10,8 +10,11 @@
 #include <sys/socket.h> /* socket, connect */
 #include <netinet/in.h> /* struct sockaddr_in, struct sockaddr */
 #include <netdb.h> /* struct hostent, gethostbyname */
+#include <pthread.h>
+
 
 #include "jsmn.h"
+#include "buffer.h"
 
 #define MAX_FMT_SIZE 200
 
@@ -295,16 +298,82 @@ int main_jsmn() {
 
 
 
+char portname[100];
+char host[200];
+int port = 8080;
 
+
+void* readSerialThread()
+{
+
+    log_print(1, "Opening %s", portname);
+
+    while (1) {
+
+      int fd = open (portname, O_RDWR | O_NOCTTY | O_SYNC);
+
+      if (fd < 0)
+      {
+              error_message ("error %d opening %s: %s, will try once more after several seconds", errno, portname, strerror (errno));
+              sleep(3);
+              continue;
+
+      }
+
+      log_print(1, "Opening %s OK", portname);
+
+    set_interface_attribs (fd, B115200, 0);  // set speed to 115,200 bps, 8n1 (no parity)
+    set_blocking (fd, 1);                // set no blocking
+
+
+    char buf [300];
+
+
+    while (1) {
+
+       memset(buf, 0, 300);
+
+      int n = read (fd, buf, sizeof(buf));
+
+      //log_print(1, "read %d: %s\n", n, buf);
+
+      if (n > 0) {
+        log_print(1, "read %d: %s\n", n, buf);
+        //http_post(host, port, buf);
+        buf_consume(buf, 0, n);
+      }
+
+      if (n <= 0) {
+        log_print(1, "read failed, will re-try %d: %s\n", n, buf);
+        close(fd);
+        sleep(3);
+        break;
+      }
+
+
+    }
+
+    }
+
+
+}
+
+pthread_t serial_tid;
 
 int main (int argc, char **argv) {
 
-    char portname[100];
-    char host[200];
-    int port = 8080;
+    //char portname[100];
+    //char host[200];
+    //int port = 8080;
+
+    char buf[300];
+    char bufParam[300];
+
+    int err;
 
     log_print(1, "Serial-to-HTTP bridge, version "__DATE__" "__TIME__);
 
+    // TODO: read config from JSON text file or apply default
 
     //strcpy(portname, "/dev/pts/11");
     strcpy(portname, "/dev/ttyACM0");
@@ -327,57 +396,36 @@ int main (int argc, char **argv) {
     http_post(host, port, "sample=342342135");
 
 
-    log_print(1, "Opening %s", portname);
+    buf_init();
 
-    while (1) {
+    if (pthread_create(&(serial_tid), NULL, &readSerialThread, NULL) != 0)
+    {
+      error_message ("error %d creating serial reading thread ", errno);
+    }
 
-      int fd = open (portname, O_RDWR | O_NOCTTY | O_SYNC);
 
-      if (fd < 0)
-      {
-              error_message ("error %d opening %s: %s, will try once more after several seconds", errno, portname, strerror (errno));
-              sleep(3);
-              continue;
+    while(1)
+    {
 
-      }
+          while(buf_get_next(buf))
+          {
 
-      log_print(1, "Opening %s OK", portname);
+              // TODO: check buffer is representing valid JSON
+              // TODO: wait on semaphore to react immediately on data appearance
+              // TODO: protect simultaneously accessible data with mutex
+              // TODO: add "sample=" prefix, needed to correctly extract data from POST request in servlet
 
-    set_interface_attribs (fd, B115200, 0);  // set speed to 115,200 bps, 8n1 (no parity)
-    set_blocking (fd, 1);                // set no blocking
+              strcpy(bufParam, "sample=");
 
-    //write (fd, "hello!\n", 7);           // send 7 character greeting
+              strcat(bufParam, buf);
 
-    //usleep ((7 + 25) * 100);             // sleep enough to transmit the 7 plus
-                                         // receive 25:  approx 100 uS per char transmit
-    char buf [300];
+              http_post(host, port, bufParam);
+          }
 
-    //memset(buf, 0, 300);
-
-    while (1) {
-
-       memset(buf, 0, 300);
-
-      int n = read (fd, buf, sizeof(buf));
-
-      //log_print(1, "read %d: %s\n", n, buf);
-
-      if (n > 0) {
-        log_print(1, "read %d: %s\n", n, buf);
-        //http_post(host, port, buf);
-      }
-
-      if (n <= 0) {
-        log_print(1, "read failed, will re-try %d: %s\n", n, buf);
-        close(fd);
-        sleep(3);
-        break;
-      }
-
+          sleep(1);
 
     }
 
-    }
 
 
 }

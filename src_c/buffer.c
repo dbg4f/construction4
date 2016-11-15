@@ -1,7 +1,4 @@
 #include "buffer.h"
-#include <stdlib.h>
-#include <stdio.h>
-#include <string.h>
 
 #define BUF_CAPACITY 5
 #define MAX_LEN 300
@@ -50,7 +47,8 @@ void buf_add_one(char c)
 
 void buf_init()
 {
-    for (int i=0; i<BUF_CAPACITY; i++)
+    int i;
+    for (i=0; i<BUF_CAPACITY; i++)
     {
         filled[i] = 0;
         memset(elements[i], 0, MAX_LEN);
@@ -70,9 +68,11 @@ void buf_switch_head()
 
 void buf_consume(char* buf, int start, int length)
 {
+    int i;
+
     cs_enter();
 
-    for (int i=start; i<start+length; i++)
+    for (i=start; i<start+length; i++)
     {
         buf_add_one(buf[i]);
 

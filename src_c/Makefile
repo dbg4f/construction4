@@ -6,23 +6,28 @@ CC=mips-openwrt-linux-uclibc-gcc
 
 CFLAGS= -std=gnu99
 
-SOURCES=bridge.c jsmn.c
+LDFLAGS=-pthread
+
+SOURCES=bridge.c jsmn.c buffer.c
 
 OBJS=$(SOURCES:.c=.o)
 
-all: bridge
+all: bridge_mips
 
 bridge.o: bridge.c
 	$(CC) -c $(CFLAGS)  -I $(INCLUDE_DIR) -o $@ $<
   
+buffer.o: buffer.c
+	$(CC) -c $(CFLAGS)  -I $(INCLUDE_DIR) -o $@ $<
+
 jsmn.o: jsmn.c
 	$(CC) -c $(CFLAGS)  -I $(INCLUDE_DIR) -o $@ $<
 
 %.o: %.c %.h
 	$(CC) -c $(CFLAGS) -I $(INCLUDE_DIR) -o $@ $<
 
-bridge: $(OBJS)
-	$(CC) $(LDFLAGS) $(CFLAGS) -o bridge $(OBJS)
+bridge_mips: $(OBJS)
+	$(CC) $(LDFLAGS) $(CFLAGS) -o bridge_mips $(OBJS)
 
 clean:
-	rm *.o bridge
+	rm *.o bridge_mips

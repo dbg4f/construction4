@@ -8,7 +8,7 @@ CFLAGS= -std=gnu99
 
 LDFLAGS=-pthread
 
-SOURCES=bridge.c jsmn.c buffer.c
+SOURCES=bridge.c jsmn.c buffer.c logging.c config.c
 
 OBJS=$(SOURCES:.c=.o)
 

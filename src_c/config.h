@@ -15,5 +15,7 @@ typedef struct
 
 bridge_config* get_bridge_config();
 
+void load_bridge_config(char* fileName);
+
 
 #endif

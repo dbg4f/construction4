@@ -24,9 +24,9 @@ using std::memcpy;
 
 //Debug is disabled by default
 #if 1
-#define DBG(x, ...)  printf("[TCPConnection : DBG]"x" \t[%s,%d]\r\n", ##__VA_ARGS__,__FILE__,__LINE__); 
-#define WARN(x, ...) printf("[TCPConnection: WARN]"x" \t[%s,%d]\r\n", ##__VA_ARGS__,__FILE__,__LINE__); 
-#define ERR(x, ...)  printf("[TCPConnection : ERR]"x" \t[%s,%d]\r\n", ##__VA_ARGS__,__FILE__,__LINE__); 
+#define DBG(x, ...)  printf("[TCPConnection : DBG]" x " \t[%s,%d]\r\n", ##__VA_ARGS__,__FILE__,__LINE__);
+#define WARN(x, ...) printf("[TCPConnection: WARN]" x " \t[%s,%d]\r\n", ##__VA_ARGS__,__FILE__,__LINE__);
+#define ERR(x, ...)  printf("[TCPConnection : ERR]" x " \t[%s,%d]\r\n", ##__VA_ARGS__,__FILE__,__LINE__);
 #else
 #define DBG(x, ...)
 #define WARN(x, ...)
@@ -243,3 +243,4 @@ int TCPSocketConnection::receive_all(char* data, int length)
 //    return readLen;
     receive(data,length);
 }
+

@@ -24,9 +24,9 @@
 
 //Debug is disabled by default
 #if 1
-#define DBG(x, ...)  printf("[ESP8266 : DBG]"x" \t[%s,%d]\r\n", ##__VA_ARGS__,__FILE__,__LINE__); 
-#define WARN(x, ...) printf("[ESP8266 : WARN]"x" \t[%s,%d]\r\n", ##__VA_ARGS__,__FILE__,__LINE__); 
-#define ERR(x, ...)  printf("[ESP8266 : ERR]"x" \t[%s,%d]\r\n", ##__VA_ARGS__,__FILE__,__LINE__); 
+#define DBG(x, ...)  printf("[ESP8266 : DBG]" x " \t[%s,%d]\r\n", ##__VA_ARGS__,__FILE__,__LINE__);
+#define WARN(x, ...) printf("[ESP8266 : WARN]" x " \t[%s,%d]\r\n", ##__VA_ARGS__,__FILE__,__LINE__);
+#define ERR(x, ...)  printf("[ESP8266 : ERR]" x " \t[%s,%d]\r\n", ##__VA_ARGS__,__FILE__,__LINE__);
 #else
 #define DBG(x, ...) //wait_us(10);
 #define WARN(x, ...) //wait_us(10);
@@ -34,7 +34,7 @@
 #endif
 
 #if 0
-#define INFO(x, ...) printf("[ESP8266 : INFO]"x" \t[%s,%d]\r\n", ##__VA_ARGS__,__FILE__,__LINE__); 
+#define INFO(x, ...) printf("[ESP8266 : INFO]" x " \t[%s,%d]\r\n", ##__VA_ARGS__,__FILE__,__LINE__);
 #else
 #define INFO(x, ...)
 #endif

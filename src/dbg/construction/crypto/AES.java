@@ -13,6 +13,7 @@ public class AES {
     static String IV = "\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0";
     static String plaintext = "\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0";
     static String encryptionKey = "\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0";
+    static String test = "QUDy9qB4ziKQbgI+mYirpuVQSzKNLh/waRRghB1LxTc=";
     public static void main(String [] args) {
         try {
 
@@ -32,6 +33,14 @@ public class AES {
             String decrypted = decrypt(cipher, encryptionKey);
 
             System.out.println("decrypt: " + decrypted);
+
+            byte[] srcBytes = Base64.getDecoder().decode(test);
+
+            decrypted = decrypt(srcBytes, encryptionKey);
+
+            System.out.println("decrypted = " + decrypted);
+
+
 
         } catch (Exception e) {
             e.printStackTrace();

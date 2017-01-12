@@ -8,8 +8,11 @@ int main(void)
 {
 
     int i;
-    unsigned char key[32];
+    const char* tKey = "i2FcCFdj6TgqZyqTaDQK/g==";
+    const char* tIv = "aUzcCjsw1uXA5DIYTfJLrA==";
+    unsigned char key[16];
     unsigned char buf[64];
+    unsigned char buf2[64];
     unsigned char iv[16];
     int v = MBEDTLS_AES_ENCRYPT;
 
@@ -21,16 +24,17 @@ int main(void)
 
 
 
-        memset( key, 0, 32 );
+        memset( key, 0, 16 );
         memset( iv , 0, 16 );
 
-        memset( buf, 0, 32 );
+        memset( buf, 0, 64 );
+        memset( buf2, 0, 64 );
 
         strcpy(buf, "{\"test\":123}");
 
         mbedtls_aes_setkey_enc( &ctx, key, 128);
 
-        mbedtls_aes_crypt_cbc( &ctx, v, 32, iv, buf, buf );
+        mbedtls_aes_crypt_cbc( &ctx, v, 16, iv, buf, buf );
 
 
         for (i=0; i<16; i++)
@@ -46,6 +50,25 @@ int main(void)
       Base64encode(str, buf, 32);
 
       printf("str = %s\n", str);
+
+
+     //----------------------------------
+
+      Base64decode(key, tKey);
+      Base64decode(iv, tIv);
+
+      memset( buf, ' ', 64 );
+
+      strcpy(buf, "{\"test\":123}");
+
+      mbedtls_aes_setkey_enc( &ctx, key, 128);
+
+      mbedtls_aes_crypt_cbc( &ctx, v, 16, iv, buf, buf2 );
+
+      Base64encode(str, buf2, 16);
+
+      printf("str = %s\n", str);
+
 
 
 

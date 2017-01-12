@@ -30,7 +30,7 @@ else
 
 VPATH = .. 
 
-GCC_BIN = /home/bogdel/apps/gcc-arm-none-eabi-5_4-2016q3/bin/
+GCC_BIN = /home/dmitri/apps/gcc-arm-none-eabi-5_4-2016q3/bin/
 PROJECT = ESP8266_WebSockets_HelloWorld
 OBJECTS = main.o ESP8266Interface/ESP8266Interface.o ESP8266Interface/ESP8266/ESP8266.o ESP8266Interface/Socket/Endpoint.o ESP8266Interface/Socket/Socket.o ESP8266Interface/Socket/TCPSocketConnection.o ESP8266Interface/Socket/TCPSocketServer.o ESP8266Interface/Socket/UDPSocket.o WebSocketClient/Websocket.o 
 SYS_OBJECTS = mbed/TARGET_KL25Z/TOOLCHAIN_GCC_ARM/PeripheralPins.o mbed/TARGET_KL25Z/TOOLCHAIN_GCC_ARM/analogin_api.o mbed/TARGET_KL25Z/TOOLCHAIN_GCC_ARM/analogout_api.o mbed/TARGET_KL25Z/TOOLCHAIN_GCC_ARM/cmsis_nvic.o mbed/TARGET_KL25Z/TOOLCHAIN_GCC_ARM/gpio_api.o mbed/TARGET_KL25Z/TOOLCHAIN_GCC_ARM/gpio_irq_api.o mbed/TARGET_KL25Z/TOOLCHAIN_GCC_ARM/i2c_api.o mbed/TARGET_KL25Z/TOOLCHAIN_GCC_ARM/mbed_board.o mbed/TARGET_KL25Z/TOOLCHAIN_GCC_ARM/mbed_overrides.o mbed/TARGET_KL25Z/TOOLCHAIN_GCC_ARM/pinmap.o mbed/TARGET_KL25Z/TOOLCHAIN_GCC_ARM/port_api.o mbed/TARGET_KL25Z/TOOLCHAIN_GCC_ARM/pwmout_api.o mbed/TARGET_KL25Z/TOOLCHAIN_GCC_ARM/retarget.o mbed/TARGET_KL25Z/TOOLCHAIN_GCC_ARM/rtc_api.o mbed/TARGET_KL25Z/TOOLCHAIN_GCC_ARM/serial_api.o mbed/TARGET_KL25Z/TOOLCHAIN_GCC_ARM/sleep.o mbed/TARGET_KL25Z/TOOLCHAIN_GCC_ARM/spi_api.o mbed/TARGET_KL25Z/TOOLCHAIN_GCC_ARM/startup_MKL25Z4.o mbed/TARGET_KL25Z/TOOLCHAIN_GCC_ARM/system_MKL25Z4.o mbed/TARGET_KL25Z/TOOLCHAIN_GCC_ARM/us_ticker.o 

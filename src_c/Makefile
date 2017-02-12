@@ -2,13 +2,14 @@
 
 INCLUDE_DIR=$(TOOLCHAIN_DIR)/usr/include
 
-CC=mips-openwrt-linux-uclibc-gcc
+# CC=mips-openwrt-linux-uclibc-gcc
+# CC=$(CCC)
 
 CFLAGS= -std=gnu99
 
 LDFLAGS=-pthread
 
-SOURCES=bridge.c jsmn.c buffer.c logging.c config.c
+SOURCES=bridge.c jsmn.c buffer.c logging.c config.c mbed-aes.c
 
 OBJS=$(SOURCES:.c=.o)
 

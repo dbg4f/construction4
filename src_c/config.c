@@ -90,8 +90,10 @@ void load_bridge_config(char* fileName)
         return;
 	}
 
-    get_json_value(buffer, t, r, "host", config.host);
-    get_json_value(buffer, t, r, "serialname", config.serialname);
+    get_json_value(buffer, t, r, "host",        config.host);
+    get_json_value(buffer, t, r, "serialname",  config.serialname);
+    get_json_value(buffer, t, r, "key",         config.crypt_key_txt);
+    get_json_value(buffer, t, r, "iv",          config.crypt_iv_txt);
 
     get_json_value(buffer, t, r, "port", value);
     config.port = atoi(value);

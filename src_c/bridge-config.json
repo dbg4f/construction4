@@ -1,5 +1,7 @@
 {
   "host":"localhost",
   "port":8080,
-  "serialname":"/dev/ttyACM0"
+  "serialname":"/dev/ttyACM0",
+  "key":"i2FcCFdj6TgqZyqTaDQK/g==",
+  "iv":"aUzcCjsw1uXA5DIYTfJLrA=="
 }

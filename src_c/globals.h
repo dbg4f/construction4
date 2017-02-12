@@ -18,3 +18,4 @@
 #include "config.h"
 #include "jsmn.h"
 #include "buffer.h"
+#include "mbed-aes.h"

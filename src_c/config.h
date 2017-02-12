@@ -8,6 +8,8 @@ typedef struct
   char host[200];
   int port;
   char serialname[100];
+  char crypt_key_txt[100];
+  char crypt_iv_txt[100];
 
 } bridge_config;
 

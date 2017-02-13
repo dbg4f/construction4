@@ -9,7 +9,7 @@ CFLAGS= -std=gnu99
 
 LDFLAGS=-pthread
 
-SOURCES=bridge.c jsmn.c buffer.c logging.c config.c mbed-aes.c
+SOURCES=bridge.c jsmn.c buffer.c logging.c config.c mbed-aes.c crypt.c
 
 OBJS=$(SOURCES:.c=.o)
 

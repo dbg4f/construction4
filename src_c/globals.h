@@ -19,3 +19,4 @@
 #include "jsmn.h"
 #include "buffer.h"
 #include "mbed-aes.h"
+#include "crypt.h"

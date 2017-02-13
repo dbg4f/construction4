@@ -270,6 +270,8 @@ int main (int argc, char **argv) {
 
     buf_init();
 
+    crypt_init();
+
     if (pthread_create(&(serial_tid), NULL, &readSerialThread, NULL) != 0)
     {
       error_message ("error %d creating serial reading thread ", errno);

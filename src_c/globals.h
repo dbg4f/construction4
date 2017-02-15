@@ -18,5 +18,6 @@
 #include "config.h"
 #include "jsmn.h"
 #include "buffer.h"
+#include "base64.h"
 #include "mbed-aes.h"
 #include "crypt.h"

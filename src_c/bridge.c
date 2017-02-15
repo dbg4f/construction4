@@ -66,10 +66,6 @@ void set_blocking (int fd, int should_block)
 
 int http_post(char* host, int port, char* data)
 {
-    /* first what are we going to send and where are we going to send it? */
-    //int portno =        8089;
-    //char *host =        "localhost";
-    //char *message_fmt = "POST /data=%s HTTP/1.0\r\n\r\n";
 
     char *message_fmt =
                      "POST /telemetry HTTP/1.1\r\n"
@@ -169,29 +165,28 @@ int http_post(char* host, int port, char* data)
 }
 
 
-char portname[100];
-char host[200];
-int port = 8080;
-
 
 void* readSerialThread()
 {
+	bridge_config* pConfig;
 
-    log_print(1, "Opening %s", portname);
+	pConfig = get_bridge_config();
+	
+    log_print(1, "Opening %s", pConfig->serialname);
 
     while (1) {
 
-      int fd = open (portname, O_RDWR | O_NOCTTY | O_SYNC);
+      int fd = open (pConfig->serialname, O_RDWR | O_NOCTTY | O_SYNC);
 
       if (fd < 0)
       {
-              error_message ("error %d opening %s: %s, will try once more after several seconds", errno, portname, strerror (errno));
+              error_message ("error %d opening %s: %s, will try once more after several seconds", errno, pConfig->serialname, strerror (errno));
               sleep(3);
               continue;
 
       }
 
-      log_print(1, "Opening %s OK", portname);
+      log_print(1, "Opening %s OK", pConfig->serialname);
 
     set_interface_attribs (fd, B115200, 0);  // set speed to 115,200 bps, 8n1 (no parity)
     set_blocking (fd, 1);                // set no blocking
@@ -202,24 +197,21 @@ void* readSerialThread()
 
     while (1) {
 
-       memset(buf, 0, 300);
+		memset(buf, 0, 300);
 
-      int n = read (fd, buf, sizeof(buf));
+		int n = read (fd, buf, sizeof(buf));
 
-      //log_print(1, "read %d: %s\n", n, buf);
+		if (n > 0) {
+			log_print(1, "read %d: %s\n", n, buf);        
+			buf_consume(buf, 0, n);
+		}
 
-      if (n > 0) {
-        log_print(1, "read %d: %s\n", n, buf);
-        //http_post(host, port, buf);
-        buf_consume(buf, 0, n);
-      }
-
-      if (n <= 0) {
-        log_print(1, "read failed, will re-try %d: %s\n", n, buf);
-        close(fd);
-        sleep(3);
-        break;
-      }
+		if (n <= 0) {
+			log_print(1, "read failed, will re-try %d: %s\n", n, buf);
+			close(fd);
+			sleep(3);
+			break;
+		}
 
 
     }
@@ -233,40 +225,17 @@ pthread_t serial_tid;
 
 int main (int argc, char **argv) {
 
-    //char portname[100];
-    //char host[200];
-    //int port = 8080;
-
-    char buf[300];
+	char buf[300];
+	char bufEncrypted[300];
     char bufParam[300];
-
     int err;
+	bridge_config* pConfig;
 
     log_print(1, "Serial-to-HTTP bridge, version "__DATE__" "__TIME__);
-
-    // TODO: read config from JSON text file or apply default
-
+	
     load_bridge_config("bridge-config.json");
-
-
-    //strcpy(portname, "/dev/pts/11");
-    strcpy(portname, "/dev/ttyACM0");
-
-    if (argc >= 2) {
-      strcpy(portname, argv[1]);
-    }
-
-    strcpy(host, "localhost");
-
-    if (argc >= 3) {
-      strcpy(host, argv[2]);
-    }
-
-    if (argc >= 4) {
-      port = atoi(argv[3]);
-    }
-
-    http_post(host, port, "sample={\"started\":\"1\"}");
+	
+	pConfig = get_bridge_config();
 
     buf_init();
 
@@ -278,11 +247,11 @@ int main (int argc, char **argv) {
     }
 
 
-    while(1)
-    {
+	while(1)
+	{
 
-          while(buf_get_next(buf))
-          {
+			while(buf_get_next(buf))
+			{
 
               // TODO: check buffer is representing valid JSON
               // TODO: wait on semaphore to react immediately on data appearance
@@ -291,14 +260,18 @@ int main (int argc, char **argv) {
               // TODO: logging level configurable
               // TODO: install as a daemon
 
-              strcpy(bufParam, "sample=");
+			
+				crypt_encrypt(buf, bufEncrypted);
 
-              strcat(bufParam, buf);
+				strcpy(bufParam, "encrypted=");
 
-              http_post(host, port, bufParam);
-          }
+				strcat(bufParam, bufEncrypted);
+			
+				http_post(pConfig->host, pConfig->port, bufParam);
+			
+			}
 
-          sleep(1);
+			sleep(1);
 
     }
 

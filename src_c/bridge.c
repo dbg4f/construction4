@@ -227,7 +227,8 @@ int main (int argc, char **argv) {
 
 	char buf[300];
 	char bufEncrypted[300];
-    char bufParam[300];
+    char bufEncryptedTxt[300];
+	char bufParam[300];
     int err;
 	bridge_config* pConfig;
 
@@ -261,11 +262,11 @@ int main (int argc, char **argv) {
               // TODO: install as a daemon
 
 			
-				crypt_encrypt(buf, bufEncrypted);
+				crypt_encrypt(buf, bufEncrypted, bufEncryptedTxt);
 
 				strcpy(bufParam, "encrypted=");
 
-				strcat(bufParam, bufEncrypted);
+				strcat(bufParam, bufEncryptedTxt);
 			
 				http_post(pConfig->host, pConfig->port, bufParam);
 			

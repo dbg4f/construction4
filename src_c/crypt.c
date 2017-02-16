@@ -33,16 +33,15 @@ void crypt_init()
 	
 }
 
-void crypt_encrypt(char* input, char* output)
+void crypt_encrypt(char* input, char* output, char* outputTxt)
 {
 	
 	// TODO: align buffer size 
 	
 	mbedtls_aes_crypt_cbc( &ctx, MBEDTLS_AES_ENCRYPT, 16, iv, input, output );
 	
-	Base64encode(output, output, 16);
+	Base64encode(outputTxt, output, 16);
 	
-	
-	
+		
 
 }

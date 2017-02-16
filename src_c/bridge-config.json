@@ -1,7 +1,7 @@
 {
   "host":"localhost",
   "port":8080,
-  "serialname":"/dev/pts/19",
+  "serialname":"/dev/pts/22",
   "key":"i2FcCFdj6TgqZyqTaDQK/g==",
   "iv":"aUzcCjsw1uXA5DIYTfJLrA=="
 }

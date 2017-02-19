@@ -67,8 +67,24 @@ int main(void)
 
       Base64encode(str, buf2, 16);
 
-      printf("str = %s\n", str);
+      printf("str1 = %s %s\n", str, buf);
 
+//----------------------------------
+
+      Base64decode(key, tKey);
+      Base64decode(iv, tIv);
+
+      memset( buf, ' ', 64 );
+
+      strcpy(buf, "{\"test\":123}");
+
+      mbedtls_aes_setkey_enc( &ctx, key, 128);
+
+      mbedtls_aes_crypt_cbc( &ctx, v, 16, iv, buf, buf2 );
+
+      Base64encode(str, buf2, 16);
+
+      printf("str1 = %s %s\n", str, buf);
 
 
 

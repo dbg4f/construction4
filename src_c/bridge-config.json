@@ -3,7 +3,7 @@
   "port":8080,
   "log_level" : 0,
   "log_target_mask" : 255,
-  "serialname":"/dev/pts/22",
+  "serialname":"/dev/pts/19",
   "key":"i2FcCFdj6TgqZyqTaDQK/g==",
   "iv":"aUzcCjsw1uXA5DIYTfJLrA=="
 }

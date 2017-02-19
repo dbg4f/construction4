@@ -83,6 +83,7 @@ int http_post(char* host, int port, char* data)
     struct sockaddr_in serv_addr;
     int sockfd, bytes, sent, received, total;
     char message[1024],response[4096];
+    char* http200 = "HTTP/1.1 200";
 
     /* fill in the parameters */
     sprintf(message,message_fmt, host, port, strlen(data), data);
@@ -162,8 +163,16 @@ int http_post(char* host, int port, char* data)
     /* process response */
     //log_debug("Response:\n%s\n",response);
 
-    log_channel_status(BR_CHANNEL_HTTP, BR_STATUS_OK, "Response:\n%s\n", response);
-    // TODO: make sure HTTP status 200, fail status otherwise
+    //log_channel_status(BR_CHANNEL_HTTP, BR_STATUS_OK, "Response:\n%s\n", response);
+
+    if (strlen(response) > strlen(http200) && strncmp(http200, response, strlen(http200)) == 0)
+    {
+        log_channel_status(BR_CHANNEL_HTTP, BR_STATUS_OK, "Response 200 OK:\n%s\n", response);
+    }
+    else
+    {
+        log_channel_status(BR_CHANNEL_HTTP, BR_STATUS_ERROR, "Response NOT OK:\n%s\n", response);
+    }
 
 
     return 0;
@@ -239,6 +248,7 @@ int main (int argc, char **argv) {
     char bufEncryptedTxt[300];
 	char bufParam[300];
     int err;
+    int length;
 	bridge_config* pConfig;
 
     log_info("Serial-to-HTTP bridge, version "__DATE__" "__TIME__);
@@ -266,19 +276,30 @@ int main (int argc, char **argv) {
               // TODO: check buffer is representing valid JSON
               // TODO: wait on semaphore to react immediately on data appearance
               // TODO: protect simultaneously accessible data with mutex
-              // TODO: add "sample=" prefix, needed to correctly extract data from POST request in servlet
-              // TODO: logging level configurable
               // TODO: install as a daemon
 
-			
-				crypt_encrypt(buf, bufEncrypted, bufEncryptedTxt);
+                length = strlen(buf);
+
+                while ((length % 16) != 0)
+                {
+                    length++;
+                }
+
+                log_debug("Buf from serial %s (%d)", buf, length);
+
+				crypt_encrypt(buf, bufEncrypted, bufEncryptedTxt, length);
 
 				strcpy(bufParam, "encrypted=");
 
 				strcat(bufParam, bufEncryptedTxt);
 			
 				http_post(pConfig->host, pConfig->port, bufParam);
-			
+
+				memset(buf, 0, sizeof(buf));
+				memset(bufEncrypted, 0, sizeof(bufEncrypted));
+				memset(bufEncryptedTxt, 0, sizeof(bufEncryptedTxt));
+				memset(bufParam, 0, sizeof(bufParam));
+
 			}
 
 			sleep(1);

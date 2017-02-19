@@ -5,6 +5,6 @@
 
 void crypt_init();
 
-void crypt_encrypt(char* input, char* output, char* outputTxt);
+void crypt_encrypt(char* input, char* output, char* outputTxt, int length);
 
 #endif

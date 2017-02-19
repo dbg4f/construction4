@@ -5,30 +5,36 @@
 
 //----------------------------------------------------------------------------------------------------------------------------------
 
-#define STD_OUT_VARARGS \
-    va_list argptr; \
-    va_start(argptr, format); \
-    timestamp(); \
-    vfprintf(stderr, format, argptr); \
-    va_end(argptr); \
+#define STD_OUT_VARARGS                 \
+    va_list argptr;                     \
+    va_start(argptr, format);           \
+    timestamp();                        \
+    vfprintf(stderr, format, argptr);   \
+    va_end(argptr);                     \
     puts("");
 
 
-#define SYS_OUT_VARARGS \
-    va_list vl; \
-    va_start(vl, format); \
+#define SYS_OUT_VARARGS                     \
+    va_list vl;                             \
+    va_start(vl, format);                   \
     vsyslog(LOG_USER|LOG_INFO, format, vl); \
     va_end(vl);
 
-/*
-void log_msg_sys(const char *format, ...)
-{
-    va_list vl;
-    va_start(vl, format);
-    vsyslog(LOG_USER|LOG_INFO, format, vl);
-    va_end(vl);
-}
-*/
+
+#define BR_LOG(LEVEL) \
+    if (log_level <= LEVEL)                 \
+     {                                      \
+        if (log_target_mask & BR_LOG_STD)   \
+         {                                  \
+             STD_OUT_VARARGS                \
+         }                                  \
+         if (log_target_mask & BR_LOG_SYS)  \
+         {                                  \
+             SYS_OUT_VARARGS                \
+         }                                  \
+     }
+
+
 //----------------------------------------------------------------------------------------------------------------------------------
 
 
@@ -74,39 +80,34 @@ void timestamp() {
 
 void log_print(int dbg_lvl, const char *format, ...)
 {
-    if (log_level <= dbg_lvl)
-    {
-        //log_print(format);
 
-        if (log_target_mask & BR_LOG_STD)
-        {
-            STD_OUT_VARARGS
-        }
-
-        if (log_target_mask & BR_LOG_SYS)
-        {
-            SYS_OUT_VARARGS
-        }
-
-
-    }
+        BR_LOG(dbg_lvl)
 
 }
 
 void error_message(const char* format, ...)
 {
-    if (log_level <= BR_LEVEL_ERROR)
-     {
-        if (log_target_mask & BR_LOG_STD)
-         {
-             STD_OUT_VARARGS
-         }
 
-         if (log_target_mask & BR_LOG_SYS)
-         {
-             SYS_OUT_VARARGS
-         }
-     }
+    BR_LOG(BR_LEVEL_ERROR)
+
+}
+
+void log_info(const char *format, ...)
+{
+    BR_LOG(BR_LEVEL_INFO)
+
+}
+
+void log_debug(const char *format, ...)
+{
+    BR_LOG(BR_LEVEL_DEBUG)
+
+}
+
+void log_error(const char *format, ...)
+{
+    BR_LOG(BR_LEVEL_ERROR)
+
 }
 
 
@@ -115,18 +116,23 @@ void error_message(const char* format, ...)
 
 int channel_statuses[2] = {-1, -1};
 
-void channel_message(int channel, int status, const char* format, ...)
+void log_channel_status(int channel, int status, const char* format, ...)
 {
     if (channel_statuses[channel] != status)
     {
         channel_statuses[channel] = status;
-        log_print(BR_LEVEL_INFO, format);
+        //log_print(BR_LEVEL_INFO, format);
+        BR_LOG(BR_LEVEL_INFO)
+
     }
     else
     {
-        log_print(BR_LEVEL_DEBUG, format);
+        //log_print(BR_LEVEL_DEBUG, format);
+        BR_LOG(BR_LEVEL_DEBUG)
     }
 }
+
+
 
 //----------------------------------------------------------------------------------------------------------------------------------
 
@@ -140,7 +146,8 @@ void log_rarely(const char* format, ...)
     if (t > (lastTs + 60*5))
     {
         lastTs = t;
-        log_print(BR_LEVEL_INFO, format);
+        //log_print(BR_LEVEL_INFO, format);
+        BR_LOG(BR_LEVEL_INFO)
     }
 
 }

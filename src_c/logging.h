@@ -9,16 +9,22 @@
 #define BR_CHANNEL_HTTP    1
 
 #define BR_STATUS_ERROR   0
-#define BR_STATUS_INFO    1
+#define BR_STATUS_OK      1
 
 
 void set_log_level(int level);
 
 void log_print(int dbg_lvl, const char *format, ...);
 
+void log_info(const char *format, ...);
+
+void log_debug(const char *format, ...);
+
+void log_error(const char *format, ...);
+
 void error_message(const char* format, ...);
 
-void channel_message(int channel, int status, const char* format, ...);
+void log_channel_status(int channel, int status, const char* format, ...);
 
 void log_rarely(const char* format, ...);
 

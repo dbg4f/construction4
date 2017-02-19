@@ -88,13 +88,13 @@ int http_post(char* host, int port, char* data)
     sprintf(message,message_fmt, host, port, strlen(data), data);
 
 
-    log_print(1, "Request (%s:%d):\n%s\n", host, port, message);
+    log_debug("Request (%s:%d):\n%s\n", host, port, message);
 
     /* create the socket */
     sockfd = socket(AF_INET, SOCK_STREAM, 0);
     if (sockfd < 0)
     {
-      log_print(0, "HTTP POST: ERROR opening socket");
+      log_channel_status(BR_CHANNEL_HTTP, BR_STATUS_ERROR, "HTTP POST: ERROR opening socket");
       return -1;
     }
 
@@ -102,7 +102,7 @@ int http_post(char* host, int port, char* data)
     server = gethostbyname(host);
     if (server == NULL)
     {
-      log_print(0, "HTTP POST: ERROR, no such host");
+      log_channel_status(BR_CHANNEL_HTTP, BR_STATUS_ERROR, "HTTP POST: ERROR, no such host");
       return -2;
     }
 
@@ -115,7 +115,7 @@ int http_post(char* host, int port, char* data)
     /* connect the socket */
     if (connect(sockfd,(struct sockaddr *)&serv_addr,sizeof(serv_addr)) < 0)
     {
-        log_print(0, "HTTP POST: ERROR connecting");
+        log_channel_status(BR_CHANNEL_HTTP, BR_STATUS_ERROR, "HTTP POST: ERROR connecting");
         return -3;
     }
 
@@ -128,7 +128,8 @@ int http_post(char* host, int port, char* data)
         //log_print(1, "Bytes  write %d %d %d", bytes, sent, total);
 
         if (bytes < 0)
-            error_message("HTTP POST: ERROR writing message to socket");
+            //log_error("HTTP POST: ERROR writing message to socket");
+            log_channel_status(BR_CHANNEL_HTTP, BR_STATUS_ERROR, "HTTP POST: ERROR writing message to socket");
         if (bytes == 0)
             break;
         sent+=bytes;
@@ -141,10 +142,10 @@ int http_post(char* host, int port, char* data)
     do {
         bytes = read(sockfd,response+received,total-received);
 
-        log_print(1, "Bytes  read %d %d %d", bytes, received, total);
+        log_debug("Bytes  read %d %d %d", bytes, received, total);
 
         if (bytes < 0)
-            error_message("HTTP POST: ERROR reading response from socket");
+            log_channel_status(BR_CHANNEL_HTTP, BR_STATUS_ERROR, "HTTP POST: ERROR reading response from socket");
         if (bytes == 0)
             break;
 
@@ -159,7 +160,11 @@ int http_post(char* host, int port, char* data)
     close(sockfd);
 
     /* process response */
-    log_print(1, "Response:\n%s\n",response);
+    //log_debug("Response:\n%s\n",response);
+
+    log_channel_status(BR_CHANNEL_HTTP, BR_STATUS_OK, "Response:\n%s\n", response);
+    // TODO: make sure HTTP status 200, fail status otherwise
+
 
     return 0;
 }
@@ -172,7 +177,7 @@ void* readSerialThread()
 
 	pConfig = get_bridge_config();
 	
-    log_print(1, "Opening %s", pConfig->serialname);
+    log_info("Opening %s", pConfig->serialname);
 
     while (1) {
 
@@ -180,13 +185,15 @@ void* readSerialThread()
 
       if (fd < 0)
       {
-              error_message ("error %d opening %s: %s, will try once more after several seconds", errno, pConfig->serialname, strerror (errno));
+              //error_message ("error %d opening %s: %s, will try once more after several seconds", errno, pConfig->serialname, strerror (errno));
+              log_channel_status(BR_CHANNEL_SERIAL, BR_STATUS_ERROR, "error %d opening %s: %s, will try once more after several seconds", errno, pConfig->serialname, strerror (errno));
+
               sleep(3);
               continue;
 
       }
 
-      log_print(1, "Opening %s OK", pConfig->serialname);
+      log_debug("Opening %s OK", pConfig->serialname);
 
     set_interface_attribs (fd, B115200, 0);  // set speed to 115,200 bps, 8n1 (no parity)
     set_blocking (fd, 1);                // set no blocking
@@ -202,12 +209,14 @@ void* readSerialThread()
 		int n = read (fd, buf, sizeof(buf));
 
 		if (n > 0) {
-			log_print(1, "read %d: %s\n", n, buf);        
+			//log_debug("read %d: %s\n", n, buf);
+			log_channel_status(BR_CHANNEL_SERIAL, BR_STATUS_OK, "read %d: %s\n", n, buf);
 			buf_consume(buf, 0, n);
 		}
 
 		if (n <= 0) {
-			log_print(1, "read failed, will re-try %d: %s\n", n, buf);
+			//log_print(1, "read failed, will re-try %d: %s\n", n, buf);
+			log_channel_status(BR_CHANNEL_SERIAL, BR_STATUS_ERROR, "read failed, will re-try %d: %s\n", n, buf);
 			close(fd);
 			sleep(3);
 			break;
@@ -232,7 +241,7 @@ int main (int argc, char **argv) {
     int err;
 	bridge_config* pConfig;
 
-    log_print(1, "Serial-to-HTTP bridge, version "__DATE__" "__TIME__);
+    log_info("Serial-to-HTTP bridge, version "__DATE__" "__TIME__);
 	
     load_bridge_config("bridge-config.json");
 	

@@ -98,6 +98,17 @@ void load_bridge_config(char* fileName)
     get_json_value(buffer, t, r, "port", value);
     config.port = atoi(value);
 
+    get_json_value(buffer, t, r, "log_level", value);
+    if (strlen(value) > 0) {
+        set_log_level(atoi(value));
+    }
+
+    get_json_value(buffer, t, r, "log_target_mask", value);
+    if (strlen(value) > 0) {
+        set_log_target_mask(atoi(value));
+    }
+
+
     log_print(1, "config: host=%s, port=%d, serialname=%s\n", config.host, config.port, config.serialname);
 
   }

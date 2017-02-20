@@ -1,8 +1,8 @@
-# TOOLCHAIN_DIR=/usr/local/cross-compile/openwrt/staging_dir/toolchain-mips_34kc_gcc-4.8-linaro_uClibc-0.9.33.2
+TOOLCHAIN_DIR=/usr/local/cross-compile/openwrt/staging_dir/toolchain-mips_34kc_gcc-4.8-linaro_uClibc-0.9.33.2
 
 INCLUDE_DIR=$(TOOLCHAIN_DIR)/usr/include
 
-# CC=mips-openwrt-linux-uclibc-gcc
+CC=mips-openwrt-linux-uclibc-gcc
 # CC=$(CCC)
 
 CFLAGS= -std=gnu99

@@ -354,7 +354,7 @@ protected:
 public:
     input(const char * first, const char * last) : cur_(first), end_(last), last_ch_(-1), ungot_(false), line_(1) {};
 
-    int getc() {
+    int getc1() {
         if (ungot_) {
             ungot_ = false;
             return last_ch_;
@@ -384,7 +384,7 @@ public:
     }
     void skip_ws() {
         while (1) {
-            int ch = getc();
+            int ch = getc1();
             if (! (ch == ' ' || ch == '\t' || ch == '\n' || ch == '\r')) {
                 ungetc();
                 break;
@@ -393,7 +393,7 @@ public:
     }
     int expect(int expect) {
         skip_ws();
-        if (getc() != expect) {
+        if (getc1() != expect) {
             ungetc();
             return false;
         }
@@ -403,7 +403,7 @@ public:
         for (std::string::const_iterator pi(pattern.begin());
                 pi != pattern.end();
                 ++pi) {
-            if (getc() != *pi) {
+            if (getc1() != *pi) {
                 ungetc();
                 return false;
             }
@@ -440,14 +440,14 @@ inline bool _parse_string(MbedJSONValue& out, input& in) {
     out = MbedJSONValue(std::string(""));
     std::string& s = out.get<std::string>();
     while (1) {
-        int ch = in.getc();
+        int ch = in.getc1();
         if (ch < ' ') {
             in.ungetc();
             return false;
         } else if (ch == '"') {
             return true;
         } else if (ch == '\\') {
-            if ((ch = in.getc()) == -1) {
+            if ((ch = in.getc1()) == -1) {
                 return false;
             }
             switch (ch) {
@@ -514,7 +514,7 @@ inline bool _parse_number(MbedJSONValue& out, input& in) {
 #endif
     std::string num_str;
     while (1) {
-        int ch = in.getc();
+        int ch = in.getc1();
         if (('0' <= ch && ch <= '9') || ch == '+' || ch == '-' || ch == '.'
                 || ch == 'e' || ch == 'E') {
             num_str.push_back(ch);
@@ -533,7 +533,7 @@ inline bool _parse_number(MbedJSONValue& out, input& in) {
 
 inline bool _parse(MbedJSONValue& out, input& in) {
     in.skip_ws();
-    int ch = in.getc();
+    int ch = in.getc1();
     switch (ch) {
 #define IS(ch, text, val) case ch: \
       if (in.match(text)) { \
@@ -577,7 +577,7 @@ inline const char * parse(MbedJSONValue& out, const char * first, const char * l
         sprintf(buf, "syntax error at line %d near: ", in.line());
         *err = buf;
         while (1) {
-            int ch = in.getc();
+            int ch = in.getc1();
             if (ch == -1 || ch == '\n') {
                 break;
             } else if (ch >= ' ') {

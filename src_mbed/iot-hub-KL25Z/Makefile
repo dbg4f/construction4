@@ -112,7 +112,7 @@ INCLUDE_PATHS += -I../mbed/hal
 INCLUDE_PATHS += -I../mbed/platform
 
 LIBRARY_PATHS := -L../mbed/TARGET_KL25Z/TOOLCHAIN_GCC_ARM 
-LIBRARIES := -l:libmbed.a 
+LIBRARIES := -l:libmbed.a
 LINKER_SCRIPT := ../mbed/TARGET_KL25Z/TOOLCHAIN_GCC_ARM/MKL25Z4.ld
 
 # Objects and Paths
@@ -214,7 +214,7 @@ ASM_FLAGS += -D__CORTEX_M0PLUS
 ASM_FLAGS += -DARM_MATH_CM0PLUS
 
 
-LD_FLAGS :=-Wl,--gc-sections -Wl,--wrap,main -Wl,--wrap,_malloc_r -Wl,--wrap,_free_r -Wl,--wrap,_realloc_r -Wl,--wrap,_calloc_r -Wl,--wrap,exit -Wl,--wrap,atexit -mcpu=cortex-m0plus -mthumb 
+LD_FLAGS :=-Wl,--gc-sections -Wl,--wrap,main -Wl,--wrap,_malloc_r -Wl,--wrap,_free_r -Wl,--wrap,_realloc_r -Wl,--wrap,_calloc_r -Wl,--wrap,exit -Wl,--wrap,atexit -mcpu=cortex-m0plus -mthumb
 
 LD_SYS_LIBS += -lstdc++
 LD_SYS_LIBS += -lsupc++
@@ -262,7 +262,7 @@ all: $(PROJECT).bin $(PROJECT).hex size
 
 $(PROJECT).elf: $(OBJECTS) $(SYS_OBJECTS) $(LINKER_SCRIPT)
 	+@echo "link: $(notdir $@)"
-	@$(LD) $(LD_FLAGS) -T $(filter %.ld, $^) $(LIBRARY_PATHS) --output $@ $(filter %.o, $^) $(LIBRARIES) $(LD_SYS_LIBS)
+	@$(LD) $(LD_FLAGS) -T $(filter %.ld, $^) $(LIBRARY_PATHS) --output $@ $(filter %.o, $^) -Wl,--start-group $(LIBRARIES) $(LD_SYS_LIBS) -Wl,--end-group
 
 
 $(PROJECT).bin: $(PROJECT).elf

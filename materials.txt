@@ -1,0 +1,18 @@
+
+põrand:
+ - ceresit krunt (maht?)
+ - armatuur 
+ - armatuuri kõrguse reg.
+ - küte kaabel (pikkus?)
+ - küte andur
+ - seguotsik
+ - ämber
+ - FIBO killustik
+ 
+ seinad
+  - pruss 44x95x2400 (6tk)
+  - metallkruvid
+  
+  
+ elekter
+  - juhe ???

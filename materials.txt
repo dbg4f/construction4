@@ -16,3 +16,14 @@ põrand:
   
  elekter
   - juhe ???
+
+
+
+walls, 06.08.2017
+
+ - 4.5x40, 4.5x45
+ - L 65mm
+ - Vert prof x10
+ - pruss 66mm
+
+

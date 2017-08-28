@@ -27,3 +27,11 @@ walls, 06.08.2017
  - pruss 66mm
 
 
+todo, 28.08.2017
+ - floor prepare, tunnel, ventilation, water
+ - around chimney
+ - floor betoning, electric connections
+ - vent. kitchen, bath
+ - electric main panel
+ - hardening from inside
+ 
